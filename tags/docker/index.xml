@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/docker/</link>
+    <description>Recent content in docker on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 19 Jul 2020 19:56:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Win10系统安装docker</title>
+      <link>https://blog.github.io/win10%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85docker/</link>
+      <pubDate>Sun, 19 Jul 2020 19:56:23 +0800</pubDate>
+      
+      <guid>https://blog.github.io/win10%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85docker/</guid>
+      <description>win10系统安装docker tool box   安装环境如下 win10 家庭版 64位
+下载链接
+在docker toolbox版本选择上，推荐DockerToolbox-17.12.0-ce.exe这一款，18虽然比较新，但是稳定性和兼容性不如老版本，所以这里保守的选择17。
+  安装步骤拆解     第二步如果之前装过Git，那就不要勾选，没有装过git就勾选git
+  勾选前两个选项即可
+随后一路next进行安装，需要注意一点，安装目录不要出现中文路径。
+  安装成功之后，桌面会生成一个docker的图标，这里有一个小坑，如果电脑里曾经安装过git，而安装路径又不在C:/Program Files/Git的话，就会报错，所以右键点击图标，修改路径为你电脑里真实git的安装路径     修改docker的镜像源 推荐使用阿里云容器镜像加速服务
+官方文档
+  </description>
+    </item>
+    
+  </channel>
+</rss>

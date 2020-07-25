@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vue on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/vue/</link>
+    <description>Recent content in Vue on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 Jul 2020 21:24:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vue使用echarts</title>
+      <link>https://blog.github.io/vue%E4%BD%BF%E7%94%A8echarts/</link>
+      <pubDate>Sat, 11 Jul 2020 21:24:05 +0800</pubDate>
+      
+      <guid>https://blog.github.io/vue%E4%BD%BF%E7%94%A8echarts/</guid>
+      <description>vue框架使用echarts   安装echarts依赖 pip install echarts -S    在main.js中全局引入 //引入echarts import echarts from &#39;echarts&#39; Vue.prototype.$echarts = echarts;    创建echarts.vue文件 在template写入 &amp;lt;div id=&amp;quot;myChart&amp;quot; :style=&amp;quot;{width:&#39;600px&#39;, height: &#39;300px&#39;}&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  宽度不要过小,不然有些数据会压缩显示.
+  创建柱状图 methods中定义方法
+drawLine() { // 基于准备好的dom，初始化echarts实例 let myChart = this.$echarts.init(document.getElementById(&#39;myChart&#39;)); // 绘制图表 myChart.setOption({ title: {text: &#39;在Vue中使用echarts&#39;}, tooltip: {}, lengend:{ data:[&#39;销量&#39;] }, //横坐标 xAxis: { data: [&amp;quot;衬衫&amp;quot;, &amp;quot;羊毛衫&amp;quot;, &amp;quot;雪纺衫&amp;quot;, &amp;quot;裤子&amp;quot;, &amp;quot;高跟鞋&amp;quot;, &amp;quot;袜子&amp;quot;] }, //纵坐标 yAxis: {}, series: [{ name: &#39;销量&#39;, //图形种类 type: &#39;bar&#39;, data: [5, 20, 36, 10, 10, 20] }] }); }  mounted生命周期函数中调用方法</description>
+    </item>
+    
+    <item>
+      <title>Vue深色模式</title>
+      <link>https://blog.github.io/vue%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 10 May 2020 18:27:55 +0800</pubDate>
+      
+      <guid>https://blog.github.io/vue%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F/</guid>
+      <description>深色模式demo   找到控制区域颜色的css文件    在修改的页面添加按钮控制 这里引用了heyui的控件.
+&amp;lt;div&amp;gt;深色: &amp;lt;!--trueValue选中的值 falseValue未选中的值 small 缩小版--&amp;gt; &amp;lt;h-switch v-model=&amp;quot;black&amp;quot; trueValue=&amp;quot;yes&amp;quot; falseValue=&amp;quot;no&amp;quot; :small=&amp;quot;true&amp;quot; @change=&amp;quot;change_back()&amp;quot;&amp;gt;&amp;lt;/h-switch&amp;gt; &amp;lt;/div&amp;gt;    定义变量及函数 通过localStorage来保存用户的选择,第一次加载通过当前时间来判断是否使用深色模式
+data(){ return{ //主题变量 black: &#39;yes&#39;, } }, mounted(){ //主题保持 this.get_theme(); }, methods:{ get_theme() { //判断是否是第一次页面加载 if (localStorage.getItem(&#39;theme&#39;) == null) { //第一次加载判断时间 let date = new Date(); //判断当前时间 if (date.getHours() &amp;gt;= 6 &amp;amp;&amp;amp; date.getHours() &amp;lt; 18) { localStorage.setItem(&#39;theme&#39;, &#39;no&#39;); this.black = localStorage.getItem(&#39;theme&#39;); this.change_back() } else { localStorage.</description>
+    </item>
+    
+    <item>
+      <title>又拍云上传</title>
+      <link>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:23:14 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>又拍云demo   创建又拍云账号创建空间    网页右上角指向用户名选择&amp;ndash;&amp;gt;账户管理&amp;ndash;&amp;gt;用户资料&amp;ndash;&amp;gt;实名认证   后端建立请求对象 # 又拍云 import upyun # 又拍云上上传 class Upload_yun(View): def post(self, request): # 接收参数 img = request.FILES.get(&#39;file&#39;) # 创建连接对象 up = upyun.UpYun(&#39;空间名&#39;, username=&#39;操作员用户名&#39;, password=&#39;操作员密码&#39;) # 声明 请求头 headers = {&#39;x-gmkerl-rotate&#39;: &#39;180&#39;} for chunk in img.chunks(): res = up.put(&#39;/&#39; + img.name, chunk, checksum=True, headers=headers) return HttpResponse(json.dumps({&#39;filename&#39;: img.name}), content_type=&#39;application/json&#39;)    前端使用拖拽上传 &amp;lt;template&amp;gt; &amp;lt;td&amp;gt;又拍云上传 &amp;lt;div class=&amp;quot;upload&amp;quot;&amp;gt; 拖拽上传 &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/template&amp;gt; mounted() { let upload = document.</description>
+    </item>
+    
+    <item>
+      <title>七牛云上传</title>
+      <link>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:04:31 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>七牛云上传demo   创建七牛云账号，创建空间    在页面右上角指向头像选择密钥管理选择一套AccessKey/SecretKey   请求token # 七牛云token from qiniu import Auth class QiNiu(APIView): def get(self, request): # 声明认证对象 AK与SK对应系统给你分配的AccessKey/SecretKey q = Auth(&#39;AK&#39;, &#39;SK&#39;) # 获取token token = q.upload_token(&#39;liuliua&#39;) return Response({&#39;token&#39;: token})    前端页面 &amp;lt;tr&amp;gt; &amp;lt;!--图片--&amp;gt; &amp;lt;td&amp;gt;七牛云上传:&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;file&amp;quot; @change=&amp;quot;upload_qiniu&amp;quot;&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt;    前端获取响应拿到token mounted() { this.get_token(); }, methods: { //获取七牛云的token get_token() { this.axios.get(&#39;http://127.0.0.1:8000/qiniu/&#39;) .then(res =&amp;gt; { this.token = res.data.token; console.log(this.token) }) }, //上传到七牛云 upload_qiniu(e) { //获取文件 let file = e.</description>
+    </item>
+    
+    <item>
+      <title>微博三方登录</title>
+      <link>https://blog.github.io/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Tue, 28 Apr 2020 17:31:07 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</guid>
+      <description>三方微博登录demo   使用微博账号登录微博开发平台
+网址: https://open.weibo.com/
+随便起个应用名称创建好应用
+  进入应用,选择应用信息选择高级信息
+填写你的授权回调页与取消授权回调页路由.两个写一样的就好
+  授权验证
+在web页面中给微博登录按钮绑定点击事件.引导用户导到下边的地址
+https://api.weibo.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&amp;amp;response_type=code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI     client_id 对应你应用中的App Key     redirect_uri 对应高级设置中的回调页地址    methods: { //三方登录新浪 sina() { //拼接url let url = &#39;https://api.weibo.com/oauth2/authorize?client_id=1655382420&amp;amp;response_type=code&amp;amp;redirect_uri=http://127.0.0.1:8000/md_blog&#39;; //跳转 window.location.href = url; }, }    换取access token
+https://api.weibo.com/oauth2/access_token?client_id=YOUR_CLIENT_ID&amp;amp;client_secret=YOUR_CLIENT_SECRET&amp;amp;grant_type=authorization_code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI&amp;amp;code=CODE     client_id 对应你应用中的App Key     client_secret 对应你应用中的App Secret   grant_type authorization_code(固定参数)   code 回调页返回回来的code值    # 三方登录微博 def md_blog(request): # 接收微博返回来的code code = request.</description>
+    </item>
+    
+    <item>
+      <title>图片验证码</title>
+      <link>https://blog.github.io/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
+      <pubDate>Thu, 23 Apr 2020 17:42:21 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/</guid>
+      <description>图片验证码demo   导入需要的第三方库
+# 导入类视图 from django.views import View # 导入redis数据库 import redis # 导入图片库 # 绘画库 from PIL import ImageDraw # 字体库 from PIL import ImageFont # 图片库 from PIL import Image # 随机库 import random # 文件流 import io    后端代码
+建立连接redis对象
+# 定义ip地址和端口 host = &amp;quot;localhost&amp;quot; port = 6379 # 定义连接对象 r = redis.Redis(host=host, port=port)    view逻辑
+# 定义验证码类 class MyCode(View): # 定义随机颜色 def get_random_color(self): R = random.</description>
+    </item>
+    
+    <item>
+      <title>正则验证手机号</title>
+      <link>https://blog.github.io/%E6%AD%A3%E5%88%99%E9%AA%8C%E8%AF%81%E6%89%8B%E6%9C%BA%E5%8F%B7/</link>
+      <pubDate>Thu, 23 Apr 2020 17:39:03 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E6%AD%A3%E5%88%99%E9%AA%8C%E8%AF%81%E6%89%8B%E6%9C%BA%E5%8F%B7/</guid>
+      <description>正则验证手机号demo   template中定义标签框架
+手机号: &amp;lt;input type=&amp;quot;text&amp;quot; v-model=&amp;quot;Phone&amp;quot; oninput=&amp;quot;if(value.length&amp;gt;11)value=value.slice(0,11)&amp;quot; placeholder=&amp;quot;请输入您的手机号&amp;quot;/&amp;gt; &amp;lt;Button color=&amp;quot;blue&amp;quot; @click=&amp;quot;reg()&amp;quot;&amp;gt;注册&amp;lt;/Button&amp;gt;    data中定义我们需要的变量
+data() { return { Phone: &#39;&#39; } },    methobs中定义方法
+reg() { //判断用户是否输入 if (this.username === &#39;&#39; || this.password === &#39;&#39; || this.Phone === &#39;&#39;) { this.$Message(&#39;请检查输入&#39;); return false } else { //正则判断手机号 if (!(/^1[34578]\d{9}$/.test(this.Phone))) { this.$Message(&#39;手机号格式不正确&#39;); return false } else { this.axios.get(&#39; http://127.0.0.1:8000/register/&#39;, { params: { username: this.username, password: this.password, phone:this.</description>
+    </item>
+    
+    <item>
+      <title>Vue购物车demo</title>
+      <link>https://blog.github.io/vue%E8%B4%AD%E7%89%A9%E8%BD%A6demo/</link>
+      <pubDate>Wed, 22 Apr 2020 12:36:59 +0800</pubDate>
+      
+      <guid>https://blog.github.io/vue%E8%B4%AD%E7%89%A9%E8%BD%A6demo/</guid>
+      <description>购物车简易demo   在data()中添加商品 return { msg: &amp;quot;这是一个变量&amp;quot;, //购物车变量 clist: [ {name: &#39;iphone 8&#39;, price: 5099,num:1}, {name: &#39;iphone x&#39;, price: 8699,num:1}, {name: &#39;iphone xs&#39;, price: 6499,num:1} ], //总价格 price:0, }    template中完成表格 &amp;lt;tr v-for=&amp;quot;(i,index) in this.clist&amp;quot;&amp;gt; &amp;lt;td data-th=&amp;quot;Product&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;col-md-3 text-left&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;../assets/images/placeholder-product.jpg&amp;quot; class=&amp;quot;img-fluid&amp;quot;&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;col-md-9 text-left mt-sm-2&amp;quot;&amp;gt; &amp;lt;h4&amp;gt;{{i.name}}&amp;lt;/h4&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td data-th=&amp;quot;Price&amp;quot;&amp;gt;{{i.price}}&amp;lt;/td&amp;gt; &amp;lt;td data-th=&amp;quot;Quantity&amp;quot;&amp;gt; &amp;lt;input type=&amp;quot;number&amp;quot; class=&amp;quot;form-control text-center&amp;quot; v-model=&amp;quot;i.num&amp;quot;&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td class=&amp;quot;actions&amp;quot; data-th=&amp;quot;&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;text-right&amp;quot;&amp;gt; &amp;lt;Button @click=&amp;quot;changenum(index,&#39;+&#39;)&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fas fa-sync&amp;quot;&amp;gt;+&amp;lt;/i&amp;gt;&amp;lt;/Button&amp;gt; &amp;lt;Button @click=&amp;quot;changenum(index,&#39;-&#39;)&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fas fa-trash&amp;quot;&amp;gt;-&amp;lt;/i&amp;gt;&amp;lt;/Button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;Button @click=&amp;quot;rem(index)&amp;quot;&amp;gt;移除&amp;lt;/Button&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt;    在mounted钩子方法中写入页面加载立即计算总价 mounted: function () { //加载页面第一次计算总价 for(let i =0,l=this.</description>
+    </item>
+    
+    <item>
+      <title>Vue传参query与params</title>
+      <link>https://blog.github.io/vue%E4%BC%A0%E5%8F%82query%E4%B8%8Eparams/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/vue%E4%BC%A0%E5%8F%82query%E4%B8%8Eparams/</guid>
+      <description>1.query方式传递参数
+this.$router.push({ /query方式传参使用path或name都可以 path:&#39;/index&#39;, query:{ //要传递的参数 key:value } })  query方式传递参数接收参数
+this.xx=this.$route.query.xx   2.params方式传递参数
+this.$router.push({ /使用params方式传参这里必须写name 路由中定义的name name:&#39;xxx&#39;, params:{ //要传递的参数 key:value } })  params方式传递接收参数
+this.xx=this.$route.params.xx   注意事项
+//在传递参数是使用this.$router //接收参数时使用this.$toute /只有一个r的差别,经常会犯的小马虎  query与params方式传参在客户端的区别
+query方式传参在地址栏中会显示 字段=数据 id=1&amp;amp;age=18&amp;amp;name=zhangsan  params方式传参在地址栏中会显示 数据/数据/数据 1/18/zhangsan  </description>
+    </item>
+    
+    <item>
+      <title>Vue分页展示</title>
+      <link>https://blog.github.io/vue%E5%88%86%E9%A1%B5%E5%B1%95%E7%A4%BA/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/vue%E5%88%86%E9%A1%B5%E5%B1%95%E7%A4%BA/</guid>
+      <description>这里提供两种分页方法 一种是手写分页,不常用,但是明白一下分页的逻辑实现 第二种是用heyui提供的组件.很多功能都给封装好了,用起来也非常的美观.   手写分页 后端接口
+class GoodList(APIView): def get(self, request): # 当前页 page = int(request.GET.get(&#39;page&#39;, 1)) # 一页有多少条商品 size = int(request.GET.get(&#39;size&#39;, 1)) # 定义从哪里开始切片 data_start = (page - 1) * size # 定义切到哪 data_end = page * size #查询数据 goodslist=Goods.objects.all()[data_start:data_end] #查询总数量 count=Goods.objects.count() # 序列化操作 goods_ser=GoodsSer(goodslist,many=True) # 返回响应 return Response({ &#39;total&#39;:count, &#39;data&#39;:goods_ser.data })  前段页面
+&amp;lt;template&amp;gt; ...... &amp;lt;!--自主分页--&amp;gt; &amp;lt;div&amp;gt; &amp;lt;!-- v-show 判断当前页数是否有需要显示上或下一页 --&amp;gt; &amp;lt;Button v-show=&amp;quot;lastpage&amp;quot; @click=&amp;quot;getdata(lastpage)&amp;quot;&amp;gt;上一页&amp;lt;/Button&amp;gt; &amp;lt;Button v-for=&amp;quot;index in all&amp;quot; @click=&amp;quot;getdata(index)&amp;quot;&amp;gt;{{index}}&amp;lt;/Button&amp;gt; &amp;lt;Button v-show=&amp;quot;nextpage&amp;quot; @click=&amp;quot;getdata(nextpage)&amp;quot;&amp;gt;下一页&amp;lt;/Button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; export default { data() { return { //自主分页 total: 0,//商品总数 curpage: 1,//当前页 all: 0,//总页数 lastpage: 0,//上一页 nextpage: 0,//下一页 size: 2,//每页显示多少 //商品列表 goodlist: &#39;&#39;, mounted() { //调用自主分请求 this.</description>
+    </item>
+    
+    <item>
+      <title>Vue页面语言切换</title>
+      <link>https://blog.github.io/vue%E9%A1%B5%E9%9D%A2%E8%AF%AD%E8%A8%80%E5%88%87%E6%8D%A2/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/vue%E9%A1%B5%E9%9D%A2%E8%AF%AD%E8%A8%80%E5%88%87%E6%8D%A2/</guid>
+      <description>i18n 模块 语言国际化 首先在Vue项目中安装i18n模块
+npm install vue-i18n --save  在src目录下创建文件夹lang(名字根据自己喜好)
+在lang文件夹中创建两个js文件(这里做的是中英文切换,如果是多个国家语言文件同步增多)
+//数据是key:value形式,根据对应的中英文转换填写 export const m = { name: &#39;美多商城&#39;, home: &#39;首页&#39;, shop: &#39;商店&#39;, page: &#39;更多&#39;, contact: &#39;联系我们&#39;, welcome:&#39;欢迎您&#39; };  打开Vue项目中main.js文件
+//引入国际化组件 import VueI18n from &#39;vue-i18n&#39;; Vue.use(VueI18n); //调用语言包 const i18n = new VueI18n({ //默认语言包 locale: &#39;cn&#39;, //导入语言包 messages: { //存放我们编写的语言文件的路径 &#39;cn&#39;: require(&#39;./lang/cn&#39;), &#39;en&#39;: require(&#39;./lang/en&#39;) } }); ...... new Vue({ el: &#39;#app&#39;, router, //装载语言包 i18n, ...... });  在文件中修改文字
+原来: &amp;lt;i&amp;gt;百度一下&amp;lt;/i&amp;gt; 改变之后: m代表我们声明的常量名.</description>
+    </item>
+    
+  </channel>
+</rss>

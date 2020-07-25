@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>json on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/json/</link>
+    <description>Recent content in json on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Dec 2018 00:29:41 -0600</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/json/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>json</title>
+      <link>https://blog.github.io/json/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/json/</guid>
+      <description>json与序列化 序列化是指将内存中的对象转换为可存储或传输的字节序列 # 把dict(字典)转换为字符串(序列化) json.dumps() # 把字符串转换为dict(字典)(反序列化) json.loads() ---------------------------------------------------- #load和loads的区别(反序列化) 1.load:针对文件句柄,将json格式的字符串转为dict,从文件中读取 json = json.load(open(&#39;demo.json&#39;,&#39;r&#39;)) 2.loads:针对内存对象,将字符串转换为dict json = json.loads(&#39;{&amp;quot;a&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;b&amp;quot;:&amp;quot;2&amp;quot;}&#39;) #dump和dumps(序列化) 1.dump:将dict转换为json字符串格式并写入到文件 dict={&amp;quot;a&amp;quot;:&amp;quot;1&amp;quot;} json.dump(dict,open(&#39;demo.json&#39;,&#39;w&#39;)) 2.dumps:将dict转换为字符串类型 dict={&amp;quot;a&amp;quot;:&amp;quot;1&amp;quot;} str=json.dumps(dict)  总结 根据序列化和反序列的特性
+loads： 是将string转换为dict
+dumps： 是将dict转换为string
+load： 是将里json格式字符串转化为dict，读取文件
+dump： 是将dict类型转换为json格式字符串，存入文件</description>
+    </item>
+    
+  </channel>
+</rss>

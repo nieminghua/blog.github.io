@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>云存储 on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/%E4%BA%91%E5%AD%98%E5%82%A8/</link>
+    <description>Recent content in 云存储 on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 06 May 2020 17:23:14 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/%E4%BA%91%E5%AD%98%E5%82%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>又拍云上传</title>
+      <link>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:23:14 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>又拍云demo   创建又拍云账号创建空间    网页右上角指向用户名选择&amp;ndash;&amp;gt;账户管理&amp;ndash;&amp;gt;用户资料&amp;ndash;&amp;gt;实名认证   后端建立请求对象 # 又拍云 import upyun # 又拍云上上传 class Upload_yun(View): def post(self, request): # 接收参数 img = request.FILES.get(&#39;file&#39;) # 创建连接对象 up = upyun.UpYun(&#39;空间名&#39;, username=&#39;操作员用户名&#39;, password=&#39;操作员密码&#39;) # 声明 请求头 headers = {&#39;x-gmkerl-rotate&#39;: &#39;180&#39;} for chunk in img.chunks(): res = up.put(&#39;/&#39; + img.name, chunk, checksum=True, headers=headers) return HttpResponse(json.dumps({&#39;filename&#39;: img.name}), content_type=&#39;application/json&#39;)    前端使用拖拽上传 &amp;lt;template&amp;gt; &amp;lt;td&amp;gt;又拍云上传 &amp;lt;div class=&amp;quot;upload&amp;quot;&amp;gt; 拖拽上传 &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/template&amp;gt; mounted() { let upload = document.</description>
+    </item>
+    
+    <item>
+      <title>七牛云上传</title>
+      <link>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:04:31 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>七牛云上传demo   创建七牛云账号，创建空间    在页面右上角指向头像选择密钥管理选择一套AccessKey/SecretKey   请求token # 七牛云token from qiniu import Auth class QiNiu(APIView): def get(self, request): # 声明认证对象 AK与SK对应系统给你分配的AccessKey/SecretKey q = Auth(&#39;AK&#39;, &#39;SK&#39;) # 获取token token = q.upload_token(&#39;liuliua&#39;) return Response({&#39;token&#39;: token})    前端页面 &amp;lt;tr&amp;gt; &amp;lt;!--图片--&amp;gt; &amp;lt;td&amp;gt;七牛云上传:&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;file&amp;quot; @change=&amp;quot;upload_qiniu&amp;quot;&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt;    前端获取响应拿到token mounted() { this.get_token(); }, methods: { //获取七牛云的token get_token() { this.axios.get(&#39;http://127.0.0.1:8000/qiniu/&#39;) .then(res =&amp;gt; { this.token = res.data.token; console.log(this.token) }) }, //上传到七牛云 upload_qiniu(e) { //获取文件 let file = e.</description>
+    </item>
+    
+  </channel>
+</rss>

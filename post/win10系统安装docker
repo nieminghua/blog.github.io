@@ -1,0 +1,41 @@
+---
+title: "Win10系统安装docker"
+date: 2019-07-19T19:56:23+08:00
+tags: ["docker"]
+---
+# win10系统安装docker tool box
+
+1. ### 安装环境如下
+
+   win10 家庭版 64位
+
+   [下载链接](http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/)
+
+   在docker toolbox版本选择上，推荐DockerToolbox-17.12.0-ce.exe这一款，18虽然比较新，但是稳定性和兼容性不如老版本，所以这里保守的选择17。
+
+2. ### 安装步骤拆解
+
+   1. ![docker1](../img/docker安装1.png)
+
+   2. 第二步如果之前装过Git，那就不要勾选，没有装过git就勾选git
+
+      ![docker2](../img/docker安装2.png)
+
+   3. 勾选前两个选项即可
+
+      ![docker3](../img/docker安装3.png)
+
+      随后一路next进行安装，需要注意一点，安装目录不要出现中文路径。
+
+   4. 安装成功之后，桌面会生成一个docker的图标，这里有一个小坑，如果电脑里曾经安装过git，而安装路径又不在C:/Program Files/Git的话，就会报错，所以右键点击图标，修改路径为你电脑里真实git的安装路径
+    ![docker4](../img/docker安装4.png)
+
+      
+
+3. ### 修改docker的镜像源
+
+   推荐使用阿里云容器镜像加速服务
+
+   [官方文档](https://cr.console.aliyun.com/cn-beijing/instances/mirrors)
+
+

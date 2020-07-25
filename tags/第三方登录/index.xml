@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>第三方登录 on NieMingua-blog</title>
+    <link>/blog/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</link>
+    <description>Recent content in 第三方登录 on NieMingua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Apr 2020 17:31:07 +0800</lastBuildDate>
+    
+	<atom:link href="/blog/tags/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>微博三方登录</title>
+      <link>/blog/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Tue, 28 Apr 2020 17:31:07 +0800</pubDate>
+      
+      <guid>/blog/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</guid>
+      <description>三方微博登录demo   使用微博账号登录微博开发平台
+网址: https://open.weibo.com/
+随便起个应用名称创建好应用
+  进入应用,选择应用信息选择高级信息
+填写你的授权回调页与取消授权回调页路由.两个写一样的就好
+  授权验证
+在web页面中给微博登录按钮绑定点击事件.引导用户导到下边的地址
+https://api.weibo.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&amp;amp;response_type=code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI     client_id 对应你应用中的App Key     redirect_uri 对应高级设置中的回调页地址    methods: { //三方登录新浪 sina() { //拼接url let url = &#39;https://api.weibo.com/oauth2/authorize?client_id=1655382420&amp;amp;response_type=code&amp;amp;redirect_uri=http://127.0.0.1:8000/md_blog&#39;; //跳转 window.location.href = url; }, }    换取access token
+https://api.weibo.com/oauth2/access_token?client_id=YOUR_CLIENT_ID&amp;amp;client_secret=YOUR_CLIENT_SECRET&amp;amp;grant_type=authorization_code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI&amp;amp;code=CODE     client_id 对应你应用中的App Key     client_secret 对应你应用中的App Secret   grant_type authorization_code(固定参数)   code 回调页返回回来的code值    # 三方登录微博 def md_blog(request): # 接收微博返回来的code code = request.</description>
+    </item>
+    
+  </channel>
+</rss>

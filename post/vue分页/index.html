@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Vue分页">
+<meta itemprop="description" content="这里提供两种分页方法 一种是手写分页,不常用,但是明白一下分页的逻辑实现 第二种是用heyui提供的组件.很多功能都给封装好了,用起来也比较的美观.   手写分页 后端接口
+class GoodList(APIView): def get(self, request): # 当前页 page = int(request.GET.get(&#39;page&#39;, 1)) # 一页有多少条商品 size = int(request.GET.get(&#39;size&#39;, 1)) # 定义从哪里开始切片 data_start = (page - 1) * size # 定义切到哪 data_end = page * size #查询数据 goodslist=Goods.objects.all()[data_start:data_end] #查询总数量 count=Goods.objects.count() # 序列化操作 goods_ser=GoodsSer(goodslist,many=True) # 返回响应 return Response({ &#39;total&#39;:count, &#39;data&#39;:goods_ser.data }) 前端页面
+&lt;template&gt; ...... &lt;!--自主分页--&gt; &lt;div&gt; &lt;!-- v-show 判断当前页数是否有需要显示上或下一页 --&gt; &lt;Button v-show=&#34;lastpage&#34; @click=&#34;getdata(lastpage)&#34;&gt;上一页&lt;/Button&gt; &lt;Button v-for=&#34;index in all&#34; @click=&#34;getdata(index)&#34;&gt;{{index}}&lt;/Button&gt; &lt;Button v-show=&#34;nextpage&#34; @click=&#34;getdata(nextpage)&#34;&gt;下一页&lt;/Button&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { //自主分页  total: 0,//商品总数  curpage: 1,//当前页  all: 0,//总页数  lastpage: 0,//上一页  nextpage: 0,//下一页  size: 2,//每页显示多少  //商品列表  goodlist: &#39;&#39;, mounted() { //调用自主分请求  this.">
+<meta itemprop="datePublished" content="2020-04-06T16:08:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-06T16:08:00&#43;08:00" />
+<meta itemprop="wordCount" content="275">
+
+
+
+<meta itemprop="keywords" content="" /><meta property="og:title" content="Vue分页" />
+<meta property="og:description" content="这里提供两种分页方法 一种是手写分页,不常用,但是明白一下分页的逻辑实现 第二种是用heyui提供的组件.很多功能都给封装好了,用起来也比较的美观.   手写分页 后端接口
+class GoodList(APIView): def get(self, request): # 当前页 page = int(request.GET.get(&#39;page&#39;, 1)) # 一页有多少条商品 size = int(request.GET.get(&#39;size&#39;, 1)) # 定义从哪里开始切片 data_start = (page - 1) * size # 定义切到哪 data_end = page * size #查询数据 goodslist=Goods.objects.all()[data_start:data_end] #查询总数量 count=Goods.objects.count() # 序列化操作 goods_ser=GoodsSer(goodslist,many=True) # 返回响应 return Response({ &#39;total&#39;:count, &#39;data&#39;:goods_ser.data }) 前端页面
+&lt;template&gt; ...... &lt;!--自主分页--&gt; &lt;div&gt; &lt;!-- v-show 判断当前页数是否有需要显示上或下一页 --&gt; &lt;Button v-show=&#34;lastpage&#34; @click=&#34;getdata(lastpage)&#34;&gt;上一页&lt;/Button&gt; &lt;Button v-for=&#34;index in all&#34; @click=&#34;getdata(index)&#34;&gt;{{index}}&lt;/Button&gt; &lt;Button v-show=&#34;nextpage&#34; @click=&#34;getdata(nextpage)&#34;&gt;下一页&lt;/Button&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { //自主分页  total: 0,//商品总数  curpage: 1,//当前页  all: 0,//总页数  lastpage: 0,//上一页  nextpage: 0,//下一页  size: 2,//每页显示多少  //商品列表  goodlist: &#39;&#39;, mounted() { //调用自主分请求  this." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ipvb.gitee.io/d/post/vue%E5%88%86%E9%A1%B5/" />
+<meta property="article:published_time" content="2020-04-06T16:08:00+08:00" />
+<meta property="article:modified_time" content="2020-04-06T16:08:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vue分页"/>
+<meta name="twitter:description" content="这里提供两种分页方法 一种是手写分页,不常用,但是明白一下分页的逻辑实现 第二种是用heyui提供的组件.很多功能都给封装好了,用起来也比较的美观.   手写分页 后端接口
+class GoodList(APIView): def get(self, request): # 当前页 page = int(request.GET.get(&#39;page&#39;, 1)) # 一页有多少条商品 size = int(request.GET.get(&#39;size&#39;, 1)) # 定义从哪里开始切片 data_start = (page - 1) * size # 定义切到哪 data_end = page * size #查询数据 goodslist=Goods.objects.all()[data_start:data_end] #查询总数量 count=Goods.objects.count() # 序列化操作 goods_ser=GoodsSer(goodslist,many=True) # 返回响应 return Response({ &#39;total&#39;:count, &#39;data&#39;:goods_ser.data }) 前端页面
+&lt;template&gt; ...... &lt;!--自主分页--&gt; &lt;div&gt; &lt;!-- v-show 判断当前页数是否有需要显示上或下一页 --&gt; &lt;Button v-show=&#34;lastpage&#34; @click=&#34;getdata(lastpage)&#34;&gt;上一页&lt;/Button&gt; &lt;Button v-for=&#34;index in all&#34; @click=&#34;getdata(index)&#34;&gt;{{index}}&lt;/Button&gt; &lt;Button v-show=&#34;nextpage&#34; @click=&#34;getdata(nextpage)&#34;&gt;下一页&lt;/Button&gt; &lt;/div&gt; &lt;/template&gt; &lt;script&gt; export default { data() { return { //自主分页  total: 0,//商品总数  curpage: 1,//当前页  all: 0,//总页数  lastpage: 0,//上一页  nextpage: 0,//下一页  size: 2,//每页显示多少  //商品列表  goodlist: &#39;&#39;, mounted() { //调用自主分请求  this."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/d/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/d/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/d/favicon-16x16.png">
+	<link rel="manifest" href="/d/site.webmanifest">
+	<link rel="mask-icon" href="/d/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/d/favicon.ico">
+
+	<title>Vue分页</title>
+	<link rel="stylesheet" href="https://ipvb.gitee.io/d/scss/style.scss" integrity=%!q(<nil>) crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://ipvb.gitee.io/d/">聂明华个人博客</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://ipvb.gitee.io/d/posts/">博客</a>
+				<a href="https://ipvb.gitee.io/d/recommend/">简介</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://instagram.com/" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://ipvb.gitee.io/d/posts/">博客</a></li>
+			<li><a href="https://ipvb.gitee.io/d/recommend/">简介</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>Vue分页</h1>
+		<div class="content">
+			<h4 id="这里提供两种分页方法">这里提供两种分页方法<a href="#这里提供两种分页方法" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<h4 id="一种是手写分页不常用但是明白一下分页的逻辑实现">一种是手写分页,不常用,但是明白一下分页的逻辑实现<a href="#一种是手写分页不常用但是明白一下分页的逻辑实现" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<h4 id="第二种是用heyui提供的组件很多功能都给封装好了用起来也比较的美观">第二种是用heyui提供的组件.很多功能都给封装好了,用起来也比较的美观.<a href="#第二种是用heyui提供的组件很多功能都给封装好了用起来也比较的美观" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h4>
+<hr>
+<hr>
+<h1 id="手写分页">手写分页<a href="#手写分页" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>后端接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">GoodList</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># 当前页</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="c1"># 一页有多少条商品</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># 定义从哪里开始切片</span>
+        <span class="n">data_start</span> <span class="o">=</span> <span class="p">(</span><span class="n">page</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">size</span>
+
+        <span class="c1"># 定义切到哪</span>
+        <span class="n">data_end</span> <span class="o">=</span> <span class="n">page</span> <span class="o">*</span> <span class="n">size</span>
+
+        <span class="c1">#查询数据</span>
+        <span class="n">goodslist</span><span class="o">=</span><span class="n">Goods</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="n">data_start</span><span class="p">:</span><span class="n">data_end</span><span class="p">]</span>
+
+        <span class="c1">#查询总数量</span>
+        <span class="n">count</span><span class="o">=</span><span class="n">Goods</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+        <span class="c1"># 序列化操作</span>
+        <span class="n">goods_ser</span><span class="o">=</span><span class="n">GoodsSer</span><span class="p">(</span><span class="n">goodslist</span><span class="p">,</span><span class="n">many</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="c1"># 返回响应</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({</span>
+            <span class="s1">&#39;total&#39;</span><span class="p">:</span><span class="n">count</span><span class="p">,</span>
+            <span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">goods_ser</span><span class="o">.</span><span class="n">data</span>
+        <span class="p">})</span>
+</code></pre></div><p>前端页面</p>
+<div class="highlight"><pre class="chroma"><code class="language-vue" data-lang="vue"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+<span class="p">......</span>
+          <span class="c">&lt;!--</span><span class="nx">自主分页</span><span class="o">--&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+              <span class="c">&lt;!--</span> <span class="nx">v</span><span class="o">-</span><span class="nx">show</span> <span class="nx">判断当前页数是否有需要显示上或下一页</span> <span class="o">--&gt;</span>
+            <span class="p">&lt;</span><span class="nt">Button</span> <span class="nt">v-show</span><span class="s">=&#34;lastpage&#34; @click=&#34;getdata(lastpage)&#34;&gt;上一页&lt;/Button&gt;
+</span><span class="s">            &lt;Button v-for=&#34;index in all&#34; @click=&#34;getdata(index)&#34;&gt;{{index}}&lt;/Button&gt;
+</span><span class="s">            &lt;Button v-show=&#34;nextpage&#34; @click=&#34;getdata(nextpage)&#34;</span><span class="p">&gt;</span><span class="na">下一页</span><span class="p">&lt;/</span><span class="nt">Button</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+
+
+  <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="c1">//自主分页
+</span><span class="c1"></span>        <span class="nx">total</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span><span class="c1">//商品总数
+</span><span class="c1"></span>        <span class="nx">curpage</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span><span class="c1">//当前页
+</span><span class="c1"></span>        <span class="nx">all</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span><span class="c1">//总页数
+</span><span class="c1"></span>        <span class="nx">lastpage</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span><span class="c1">//上一页
+</span><span class="c1"></span>        <span class="nx">nextpage</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span><span class="c1">//下一页
+</span><span class="c1"></span>        <span class="nx">size</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span><span class="c1">//每页显示多少
+</span><span class="c1"></span>      
+        <span class="c1">//商品列表
+</span><span class="c1"></span>        <span class="nx">goodlist</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+          
+          
+    <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">//调用自主分请求
+</span><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">getdata</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span>
+          
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">//自主分页接口
+</span><span class="c1"></span>      <span class="nx">getdata</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">mypage</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/goodlist/&#39;</span><span class="p">,</span> <span class="p">{</span>
+          <span class="nx">params</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">page</span><span class="o">:</span> <span class="nx">mypage</span><span class="p">,</span>
+            <span class="nx">size</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">size</span>
+          <span class="p">}</span>
+        <span class="p">})</span>
+          <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">goodlist</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+
+            <span class="c1">//判断上一页
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="nx">mypage</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">lastpage</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">lastpage</span> <span class="o">=</span> <span class="nx">mypage</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="p">}</span>
+
+            <span class="c1">// 计算总页数   Math.ceil  向上取整
+</span><span class="c1"></span>            <span class="k">this</span><span class="p">.</span><span class="nx">all</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">total</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">size</span><span class="p">);</span>
+            <span class="c1">//判断下一页
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="nx">mypage</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">all</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">nextpage</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">nextpage</span> <span class="o">=</span> <span class="nx">mypage</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+</code></pre></div><h1 id="heyui-组件库">heyui 组件库<a href="#heyui-组件库" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<p>后端代码不用做修改.可以直接复用.前端就相对来说简单了许多.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vue" data-lang="vue"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="p">......</span>
+          <span class="c">&lt;!--</span><span class="nx">heyui分页</span><span class="o">--&gt;</span>
+          <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="c">&lt;!--</span> <span class="nx">layout可以自定义控制显示那些组件和顺序</span><span class="p">.</span><span class="o">--&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Pagination</span> <span class="nt">v-model</span><span class="s">=&#34;pagination&#34; @change=&#34;change&#34; layout=&#34;sizes,pager,jumper&#34; align=&#34;center&#34;</span><span class="p">&gt;</span>
+
+          <span class="p">&lt;/</span><span class="nt">Pagination</span><span class="p">&gt;</span>
+            
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+
+  <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="c1">//分页器变量
+</span><span class="c1"></span>        <span class="nx">pagination</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nx">size</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="nx">total</span><span class="o">:</span> <span class="mi">5</span>
+        <span class="p">},</span>
+        <span class="c1">//商品列表
+</span><span class="c1"></span>        <span class="nx">goodlist</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+          
+    <span class="nx">mounted</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">//请求商品接口返回数据
+</span><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/goodlist/&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">params</span><span class="o">:</span> <span class="p">{</span><span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">size</span><span class="o">:</span> <span class="mi">3</span><span class="p">}})</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">goodlist</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">//分页器事件
+</span><span class="c1"></span>      <span class="nx">change</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//二次请求
+</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/goodlist/&#39;</span><span class="p">,</span> <span class="p">{</span>
+          <span class="nx">params</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">page</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">page</span><span class="p">,</span>
+            <span class="nx">size</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">size</span>
+          <span class="p">}</span>
+        <span class="p">})</span>
+          <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">goodlist</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+          <span class="p">});</span>
+      <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+</code></pre></div><p>两种分页的效果.上边的是heyui组件,下边是手写分页器.
+<img src="../%E5%88%86%E9%A1%B5.png" alt="Image text"></p>
+<p>HEY UI  分页文档:https://www.heyui.top/component/data/view/page</p>
+<p>功能多多 各自挖掘吧.</p>
+
+		</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://ipvb.gitee.io/d/">John Doe</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://ipvb.gitee.io/d/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://ipvb.gitee.io/d/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

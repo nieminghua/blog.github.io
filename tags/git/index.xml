@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/git/</link>
+    <description>Recent content in git on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 May 2020 15:57:04 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git分支理解</title>
+      <link>https://blog.github.io/git%E5%88%86%E6%94%AF%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Wed, 27 May 2020 15:57:04 +0800</pubDate>
+      
+      <guid>https://blog.github.io/git%E5%88%86%E6%94%AF%E7%90%86%E8%A7%A3/</guid>
+      <description>git 分支命令 分支就是科幻电影里面的平行宇宙，当你正在电脑前努力学习Git的时候，另一个你正在另一个平行宇宙里努力学习SVN。
+如果两个平行宇宙互不干扰，那对现在的你也没啥影响。不过，在某个时间点，两个平行宇宙合并了，结果，你既学会了Git又学会了SVN！
+分支在实际中的作用,假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。
+现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。
+查看当前所在分支 git branch  创建新分支 git checkout -b &amp;lt;branch_name&amp;gt;  把本地分支同步到线上 git push --set-upstream origin &amp;lt;branch_name&amp;gt;  切换分支 git checkout &amp;lt;branch_name&amp;gt;  合并分支(处在master) git merge &amp;lt;branch_name&amp;gt;  删除一个已被终止的分支 如果需要删除的分支不是当前正在打开的分支，使用branch -d直接删除
+git branch -d &amp;lt;branch_name&amp;gt;  删除一个正打开的分支 如果我们在试图删除一个分支时自己还没转移到另外的分支上，Git就会给出一个警告，并拒绝该删除操作。
+如果坚持要删除该分支的话，就需要在命令中使用-D选项。
+git branch -D &amp;lt;branch_name&amp;gt;  </description>
+    </item>
+    
+  </channel>
+</rss>

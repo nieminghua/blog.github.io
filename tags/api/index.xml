@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/api/</link>
+    <description>Recent content in API on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 May 2020 17:38:57 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Restful风格</title>
+      <link>https://blog.github.io/restful%E9%A3%8E%E6%A0%BC/</link>
+      <pubDate>Sat, 30 May 2020 17:38:57 +0800</pubDate>
+      
+      <guid>https://blog.github.io/restful%E9%A3%8E%E6%A0%BC/</guid>
+      <description>restful架构 restful的通俗理解  restful就是一个大家都说普通话的约定。 两个人之间可能有交流共同的方式约定，公司内部可能有公司级别的交流沟通约定，世界上也是有世界级别的交流沟通约定。在技术范围也有不同群体间的约定。 有一个博士发了个论文说以前的接口方式都不容易被理解，不好，所以提出了一个名字叫restful的方案。 出于这个博士的影响力和这种方式确实好，所以武林中的各路英雄纷纷响应号召。 以浏览器代码范围错误代码约定这是啥么意思 比如200就是GET请求成功 201就是就是发布了一个内容成功了 等等（其实约定给的代码很少） 比较重要的是HTTP方法里不是有 GET POST PUT DELETE吗 相对应可以对应到 一条数据的 查增改删。那我们不如用浏览器方法吧，这样各种编程语言，各种平台上的人类看到这个就知道你要干啥了呀。当然除了这些方法还有其他很多，你又可以自定义。 以前接口方式错综复杂，就是想统一武林接口方式。  资源设计  设计资源的接口,接口uri选用的是名词,一般和数据库的表名相同,并且使用复数  动作设计   http动作
+​	GET:从服务器中取出资源(一项或者多项)
+​	POST:在服务器中新建一个资源
+​	PUT:在服务器更新资源,PUT更新整个对象
+​	PATCH: 在服务器更新资源,PATCH更新个别属性
+​	DELETE:从服务器中删除资源
+​
+​	HEAD: 获取资源的元数据,比如一个资源的某个值.
+​	OPTIONS: 获取客户端针对一个资源能够实施的操作.(返回这个	接口的所有方法.)
+  动作实例
+GET: 查询所有
+POST: 新建
+PUT: 更新某个数据的信息(提供数据的全部信息)
+PATCH: 更新某个数据的信息(提供数据的部分信息)
+DELETE:删除
+  返回结果   常见状态码
+200 [GET]: 服务器成功返回用户请求的数据
+201 [POST/PUT/PATCH]:用户新建或修改数据成功</description>
+    </item>
+    
+    <item>
+      <title>腾讯云手机验证码</title>
+      <link>https://blog.github.io/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
+      <pubDate>Sat, 30 May 2020 17:38:27 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</guid>
+      <description>腾讯云短信验证码demo   注册腾讯云 地址:https://cloud.tencent.com/
+  短信签名和正文模板 注册成功之后在右上角搜索框搜索==&amp;gt;短信==&amp;gt;免费领取短信==&amp;gt;快速开始
+根据引导创建短信签名和正文模板,等待审核通过.通过之后就可以使用了.腾讯云默认是赠送200条免费的短信用来测试.
+  编写发送短信脚本
+安装第三方库
+pip install qcloudsms_py  示例代码
+from qcloudsms_py import SmsSingleSender from qcloudsms_py.httpclient import HTTPError import ssl # 短信应用SDK AppID appid = 1400666666 # SDK AppID是1400开头 # 短信应用SDK AppKey appkey = &amp;quot;Appkey&amp;quot; # 需要发送短信的手机号码 phone_numbers = [&amp;quot;你要发送的手机号&amp;quot;] # 短信模板ID，需要在短信应用中申请 template_id = 614434 # 签名 sms_sign = &amp;quot;技术博客&amp;quot; ssl._create_default_https_context = ssl._create_unverified_context ssender = SmsSingleSender(appid, appkey) params = [&amp;quot;6666&amp;quot;,&amp;quot;5&amp;quot;] # 当模板没有参数时，`params = []` try: result = ssender.</description>
+    </item>
+    
+    <item>
+      <title>邮箱验证码注册</title>
+      <link>https://blog.github.io/%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B3%A8%E5%86%8C/</link>
+      <pubDate>Thu, 28 May 2020 19:44:43 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B3%A8%E5%86%8C/</guid>
+      <description>注册邮箱验证demo   打开邮箱&amp;ndash;&amp;gt;设置&amp;ndash;&amp;gt;账户&amp;ndash;&amp;gt;POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务把IMAP/SMTP服务开启(要记住授权码)   2. ### 定义发送邮箱方法
+import smtplib from email.mime.text import MIMEText from email.utils import formataddr # 定义参数 my_mail = &#39;邮箱地址@qq.com&#39; # 授权码 my_pass = &amp;quot;邮箱设置时分配的授权码&amp;quot; # 定义发送邮箱的方法 def SendMail(subject, content, mailaddr): # 声明邮件对象 msg = MIMEText(content, &amp;quot;plain&amp;quot;, &#39;utf-8&#39;) # 设置发送对象 msg[&#39;From&#39;] = formataddr([&#39;在线教育平台&#39;, my_mail]) # 设置收件方对象 msg[&#39;To&#39;] = formataddr([&#39;尊敬的用户&#39;, mailaddr]) # 设置标题 msg[&#39;Subject&#39;] = subject # 设置smtp服务器 server = smtplib.SMTP_SSL(&#39;smtp.qq.com&#39;, 465) # 登录邮箱 server.login(my_mail, my_pass) # 发送邮件 (发件人 发给谁 发送内容) server.</description>
+    </item>
+    
+    <item>
+      <title>又拍云上传</title>
+      <link>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:23:14 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>又拍云demo   创建又拍云账号创建空间    网页右上角指向用户名选择&amp;ndash;&amp;gt;账户管理&amp;ndash;&amp;gt;用户资料&amp;ndash;&amp;gt;实名认证   后端建立请求对象 # 又拍云 import upyun # 又拍云上上传 class Upload_yun(View): def post(self, request): # 接收参数 img = request.FILES.get(&#39;file&#39;) # 创建连接对象 up = upyun.UpYun(&#39;空间名&#39;, username=&#39;操作员用户名&#39;, password=&#39;操作员密码&#39;) # 声明 请求头 headers = {&#39;x-gmkerl-rotate&#39;: &#39;180&#39;} for chunk in img.chunks(): res = up.put(&#39;/&#39; + img.name, chunk, checksum=True, headers=headers) return HttpResponse(json.dumps({&#39;filename&#39;: img.name}), content_type=&#39;application/json&#39;)    前端使用拖拽上传 &amp;lt;template&amp;gt; &amp;lt;td&amp;gt;又拍云上传 &amp;lt;div class=&amp;quot;upload&amp;quot;&amp;gt; 拖拽上传 &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/template&amp;gt; mounted() { let upload = document.</description>
+    </item>
+    
+    <item>
+      <title>七牛云上传</title>
+      <link>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:04:31 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>七牛云上传demo   创建七牛云账号，创建空间    在页面右上角指向头像选择密钥管理选择一套AccessKey/SecretKey   请求token # 七牛云token from qiniu import Auth class QiNiu(APIView): def get(self, request): # 声明认证对象 AK与SK对应系统给你分配的AccessKey/SecretKey q = Auth(&#39;AK&#39;, &#39;SK&#39;) # 获取token token = q.upload_token(&#39;liuliua&#39;) return Response({&#39;token&#39;: token})    前端页面 &amp;lt;tr&amp;gt; &amp;lt;!--图片--&amp;gt; &amp;lt;td&amp;gt;七牛云上传:&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;file&amp;quot; @change=&amp;quot;upload_qiniu&amp;quot;&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt;    前端获取响应拿到token mounted() { this.get_token(); }, methods: { //获取七牛云的token get_token() { this.axios.get(&#39;http://127.0.0.1:8000/qiniu/&#39;) .then(res =&amp;gt; { this.token = res.data.token; console.log(this.token) }) }, //上传到七牛云 upload_qiniu(e) { //获取文件 let file = e.</description>
+    </item>
+    
+    <item>
+      <title>微博三方登录</title>
+      <link>https://blog.github.io/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Tue, 28 Apr 2020 17:31:07 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</guid>
+      <description>三方微博登录demo   使用微博账号登录微博开发平台
+网址: https://open.weibo.com/
+随便起个应用名称创建好应用
+  进入应用,选择应用信息选择高级信息
+填写你的授权回调页与取消授权回调页路由.两个写一样的就好
+  授权验证
+在web页面中给微博登录按钮绑定点击事件.引导用户导到下边的地址
+https://api.weibo.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&amp;amp;response_type=code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI     client_id 对应你应用中的App Key     redirect_uri 对应高级设置中的回调页地址    methods: { //三方登录新浪 sina() { //拼接url let url = &#39;https://api.weibo.com/oauth2/authorize?client_id=1655382420&amp;amp;response_type=code&amp;amp;redirect_uri=http://127.0.0.1:8000/md_blog&#39;; //跳转 window.location.href = url; }, }    换取access token
+https://api.weibo.com/oauth2/access_token?client_id=YOUR_CLIENT_ID&amp;amp;client_secret=YOUR_CLIENT_SECRET&amp;amp;grant_type=authorization_code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI&amp;amp;code=CODE     client_id 对应你应用中的App Key     client_secret 对应你应用中的App Secret   grant_type authorization_code(固定参数)   code 回调页返回回来的code值    # 三方登录微博 def md_blog(request): # 接收微博返回来的code code = request.</description>
+    </item>
+    
+  </channel>
+</rss>

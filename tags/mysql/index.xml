@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/mysql/</link>
+    <description>Recent content in mysql on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Apr 2020 16:20:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>限制用户登录次数</title>
+      <link>https://blog.github.io/%E9%99%90%E5%88%B6%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0/</link>
+      <pubDate>Sun, 26 Apr 2020 16:20:37 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E9%99%90%E5%88%B6%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0/</guid>
+      <description>登录次数过多限制登录demo 当用户密码输入次数过多时,限制用户的登录,一方面保护账号的安全,另一方面防止恶意登录. 下面提供两个版本,mysql与redis
+mysql直接在表中增加字段flag,用户输入密码错误flag+1,判断这个数据如果大于5.就拦截请求,直接返回.
+但是mysql在计算时间不如redis,会更繁琐一些.当然看业务需求,密码错误5次之后,必须更改密码,更改密码之后把flag字段清零.
+或者用手机号登录,登录成功就把flag字段清零.
+mysql: # 登录接口 class Login(APIView): def get(self, request): # mysql # 接收参数 username = request.GET.get(&#39;username&#39;) password = request.GET.get(&#39;password&#39;) # 查询数据 user = User.objects.filter(username=username).first() if user and user.flag &amp;lt; 5 and user.password == make_password(password): return Response({ &#39;code&#39;: 200, &#39;msg&#39;: &#39;登录成功&#39;, &#39;user&#39;: username, &#39;uid&#39;: user.id }) elif user and user.flag &amp;gt;= 5: return Response({ &#39;code&#39;: 400, &#39;msg&#39;: &#39;错误超过5次,请联系客服&#39; }) elif user and user.flag &amp;lt; 5 and user.</description>
+    </item>
+    
+  </channel>
+</rss>

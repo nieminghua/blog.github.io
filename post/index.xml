@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>博客 on NieMinghua-blog</title>
+    <link>https://blog.github.io/post/</link>
+    <description>Recent content in 博客 on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jul 2020 23:44:06 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>三次握手四次挥手通俗理解</title>
+      <link>https://blog.github.io/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Tue, 21 Jul 2020 23:44:06 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/</guid>
+      <description>通俗理解tcp三次挥手四次握手   首先理解tcp与udp的区别. 简单来说tcp是面向连接
+生活中的例子就是打电话
+udp是面向无连接
+举例:写信
+  三次握手与四次挥手 三次握手是为了双方准备资源
+四次握手是为了双方释放资源
+套接字是全双工通信,一个接收一个发送.关闭时必须两个通道全部关闭才算是关闭
+  三次握手   client告诉server我要发送数据,让服务器准备好资源
+  server告诉client我准备好了,你也要准备好
+  client告诉server准备好了
+  四次挥手  客户端的应用程序通知TCP数据已经发送完毕时，TCP向服务端发送一个带有FIN附加标记的报文段。 服务端收到这个FIN报文段之后，并不立即用FIN报文段回复客户端，而是先向客户端发送一个确认序号ACK，同时通知自己相应的应用程序：对方要求关闭连接（先发送ACK的目的是为了防止在这段时间内，对方重传FIN报文段）。 服务端的应用程序告诉TCP：我要彻底的关闭连接，TCP向客户端送一个FIN报文段。 客户端收到这个FIN报文段后，向服务端发送一个ACK表示连接彻底释放  </description>
+    </item>
+    
+    <item>
+      <title>Win10系统安装docker</title>
+      <link>https://blog.github.io/win10%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85docker/</link>
+      <pubDate>Sun, 19 Jul 2020 19:56:23 +0800</pubDate>
+      
+      <guid>https://blog.github.io/win10%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%AE%89%E8%A3%85docker/</guid>
+      <description>win10系统安装docker tool box   安装环境如下 win10 家庭版 64位
+下载链接
+在docker toolbox版本选择上，推荐DockerToolbox-17.12.0-ce.exe这一款，18虽然比较新，但是稳定性和兼容性不如老版本，所以这里保守的选择17。
+  安装步骤拆解     第二步如果之前装过Git，那就不要勾选，没有装过git就勾选git
+  勾选前两个选项即可
+随后一路next进行安装，需要注意一点，安装目录不要出现中文路径。
+  安装成功之后，桌面会生成一个docker的图标，这里有一个小坑，如果电脑里曾经安装过git，而安装路径又不在C:/Program Files/Git的话，就会报错，所以右键点击图标，修改路径为你电脑里真实git的安装路径     修改docker的镜像源 推荐使用阿里云容器镜像加速服务
+官方文档
+  </description>
+    </item>
+    
+    <item>
+      <title>Mongo聚合查询</title>
+      <link>https://blog.github.io/mongo%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2/</link>
+      <pubDate>Wed, 15 Jul 2020 21:10:54 +0800</pubDate>
+      
+      <guid>https://blog.github.io/mongo%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2/</guid>
+      <description>在使用mongo数据库时，简单的查询基本上可以满足大多数的业务场景，但是试想一下，如果要统计某一荐在指定的数据中出现了多少次该怎么查询呢？笨的方法是使用find 将数据查询出来，再使用count() 方法进行数据统计，这个场景还好，但是如果要求其中某个字段的和呢？是不是就非得遍历出相应的数据然后再进行求和运算呢？
+在mysql中我们经常会用到count、group by 等查询，在mongodb中我们也可以使用聚合查询。
+ 假设有这样的一组数据
+价格
+里面记录了每种水果的价格，现在我要统计一下，各种水果在这张表中出现的次数，如果不用聚合查询的话，思路应该是这样，先把表中所有的数据都取出来，然后初始化一个字典，然后再遍历每一行的数据，获取它的fName ，然后再更新字典中的计数，这种方法的时间复杂度是O(N)的，如果数据量很大的话不是很好，下面来看一下使用聚合是怎么查询的。
+聚合查询使用的是aggregate函数，它的参数是 pipeline 管道，管道的概念是用于将当前命令的输出结果作为下一个命令的参数，管道是有顺序的，比如通过第一个管道操作以后没有符合的数据那么之后的管道操作也就不会有输入，所以一定得要注意管道操作的顺序。由于对于上述问题，我们要的是所的数据统计，所以这里就不需要$match了
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+from pymongo import MongoClient
+
+client = MongoClient(host=[&#39;%s:%s&#39;%(mongoDBhost,mongoDBport)])
+G_mongo = client[mongoDBname][&#39;FruitPrice&#39;]
+
+pipeline = [
+{&#39;$group&#39;: {&#39;_id&#39;: &#34;$fName&#34;, &#39;count&#39;: {&#39;$sum&#39;: 1}}},
+]
+for i in G_mongo[&#39;test&#39;].aggregate(pipeline):
+print i
+
+数据大家可以自已构造，这里主要是看aggregate的用法。
+得到的结果是
+1
+2
+3
+{u&#39;count&#39;: 8, u&#39;_id&#39;: u&#39;banana&#39;}
+{u&#39;count&#39;: 9, u&#39;_id&#39;: u&#39;pear&#39;}
+{u&#39;count&#39;: 14, u&#39;_id&#39;: u&#39;apple&#39;}</description>
+    </item>
+    
+    <item>
+      <title>Mongodb导入文件夹(包含json和bson文件)</title>
+      <link>https://blog.github.io/mongodb%E5%AF%BC%E5%85%A5%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8C%85%E5%90%ABjson%E5%92%8Cbson%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Tue, 14 Jul 2020 22:10:26 +0800</pubDate>
+      
+      <guid>https://blog.github.io/mongodb%E5%AF%BC%E5%85%A5%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8C%85%E5%90%ABjson%E5%92%8Cbson%E6%96%87%E4%BB%B6/</guid>
+      <description>mongo导入文件   从mongo安装目录下的bin目录进入cmd 输入mongo启动   使用mongo命令将数据库删除 use 数据库名 db.dropDatabase()    重新在bin目录启动cmd 导入指定文件夹数据 在bin目录下直接输入命令即可,启动mongo之后不能粘贴
+mongorestore -d 数据库名 文件夹目录    </description>
+    </item>
+    
+    <item>
+      <title>时间格式转换</title>
+      <link>https://blog.github.io/%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</link>
+      <pubDate>Mon, 13 Jul 2020 21:59:28 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</guid>
+      <description>时间格式转换   标准时间转换为格式化时间   Mon Jul 13 2020 20:20:00 GMT+0800 (中国标准时间)  const resDate = value.getFullYear() + &#39;-&#39; + this.p((value.getMonth() + 1)) + &#39;-&#39; + this.p(value.getDate()); //转换时分秒 const resTime = this.p(value.getHours()) + &#39;:&#39; + this.p(value.getMinutes()) + &#39;:&#39; + this.p(value.getSeconds()); console.log(resDate + &#39; &#39; + resTime);  ​	转换后
+2020-07-13 20:20:00   格式化时间转为时间戳   # 将格式化后的时间转换为time.time()时间戳 def str_to_stamp(str=None, format=&#39;%Y-%m-%d %H:%M:%S&#39;): # 格式化好的时间转时间戳的,如果不传格式化好的时间，就返回当前的时间戳 times = int(time.mktime(time.strptime(str, format))) return times a = str_to_stamp(&#39;2020-07-13 20:20:00&#39;) print(a) &amp;gt;&amp;gt;&amp;gt;1594642800   秒数转时间 秒数转时间格式</description>
+    </item>
+    
+    <item>
+      <title>Vue使用echarts</title>
+      <link>https://blog.github.io/vue%E4%BD%BF%E7%94%A8echarts/</link>
+      <pubDate>Sat, 11 Jul 2020 21:24:05 +0800</pubDate>
+      
+      <guid>https://blog.github.io/vue%E4%BD%BF%E7%94%A8echarts/</guid>
+      <description>vue框架使用echarts   安装echarts依赖 pip install echarts -S    在main.js中全局引入 //引入echarts import echarts from &#39;echarts&#39; Vue.prototype.$echarts = echarts;    创建echarts.vue文件 在template写入 &amp;lt;div id=&amp;quot;myChart&amp;quot; :style=&amp;quot;{width:&#39;600px&#39;, height: &#39;300px&#39;}&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  宽度不要过小,不然有些数据会压缩显示.
+  创建柱状图 methods中定义方法
+drawLine() { // 基于准备好的dom，初始化echarts实例 let myChart = this.$echarts.init(document.getElementById(&#39;myChart&#39;)); // 绘制图表 myChart.setOption({ title: {text: &#39;在Vue中使用echarts&#39;}, tooltip: {}, lengend:{ data:[&#39;销量&#39;] }, //横坐标 xAxis: { data: [&amp;quot;衬衫&amp;quot;, &amp;quot;羊毛衫&amp;quot;, &amp;quot;雪纺衫&amp;quot;, &amp;quot;裤子&amp;quot;, &amp;quot;高跟鞋&amp;quot;, &amp;quot;袜子&amp;quot;] }, //纵坐标 yAxis: {}, series: [{ name: &#39;销量&#39;, //图形种类 type: &#39;bar&#39;, data: [5, 20, 36, 10, 10, 20] }] }); }  mounted生命周期函数中调用方法</description>
+    </item>
+    
+    <item>
+      <title>Celery定时爬取数据并发送到钉钉机器人</title>
+      <link>https://blog.github.io/celery%E5%AE%9A%E6%97%B6%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%8F%91%E9%80%81%E5%88%B0%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
+      <pubDate>Sun, 21 Jun 2020 14:57:18 +0800</pubDate>
+      
+      <guid>https://blog.github.io/celery%E5%AE%9A%E6%97%B6%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE%E5%B9%B6%E5%8F%91%E9%80%81%E5%88%B0%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA/</guid>
+      <description>python配合Scrapy框架爬取数据定时发送给钉钉群机器人 scrapy和celery的使用之前博客有写到.
+传送门:celery
+传送门:scrapy
+设置自定义钉钉机器人
+传送门:钉钉机器人
+步骤也很简单,直接上代码
+from celery.task import task # 自定义异步任务 @task() def async_test(): import json import time import os # 开始执行爬虫 os.system(&#39;cd../scrapy/hellospider/ &amp;amp;&amp;amp; scrapy crawl myspider&#39;) time_now = time.strftime(&#39;%Y-%m-%d %H&#39;, time.localtime(time.time())) # 解析数据 with open(&#39;D:\python\python8\scrapy\jtianqi.json&#39;, encoding=&#39;utf-8&#39;)as f: new_list = json.load(f) weather = new_list[&#39;weather&#39;][0] temperature_up = new_list[&#39;temperature_up&#39;][0] temperature_low = new_list[&#39;temperature_low&#39;][0] wind = new_list[&#39;wind&#39;][0] # 测试输出 print(&amp;quot;天气:%s,最高气温:%s,最低气温:%s,风力:%s&amp;quot; % ( weather, temperature_up, temperature_low, wind )) # 机器人 import time import hmac import hashlib import base64 import urllib.</description>
+    </item>
+    
+    <item>
+      <title>Scrapy框架</title>
+      <link>https://blog.github.io/scrapy%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Sun, 21 Jun 2020 14:57:00 +0800</pubDate>
+      
+      <guid>https://blog.github.io/scrapy%E6%A1%86%E6%9E%B6/</guid>
+      <description>SCRAPY爬虫框架入门 爬取中国天气网的一个小demo
+  建立框架 scrapy startproject myspider[project_name]  看一下项目的结构目录
+  scrapy.cfg: 项目的配置文件
+hellospider/: 该项目的python模块。之后您将在此加入代码。
+hellospider/items.py:需要提取的数据结构定义文件。
+hellospider/middlewares.py: 是和Scrapy的请求/响应处理相关联的框架。
+hellospider/pipelines.py: 用来对items里面提取的数据做进一步处理，如保存等。
+hellospider/settings.py: 项目的配置文件。
+hellospider/spiders/: 放置spider代码的目录。
+ 在items.py中定义自己要抓取的数据 import scrapy class HellospiderItem(scrapy.Item): # 天气 weather = scrapy.Field() # 最高温度 temperature_up = scrapy.Field() # 最低温度 temperature_low = scrapy.Field() # 风力 wind = scrapy.Field() pass  【注】上面类中的title、author、reply就像是字典中的“键”，爬到的数据就像似字典中的“值”。
+  在spiders目录下创建爬虫文件myspider.py import scrapy from ..items import HellospiderItem import sys class MySpider(scrapy.Spider): # 设置名称 name = &#39;myspider&#39; start_urls = [ &#39;http://www.</description>
+    </item>
+    
+    <item>
+      <title>集中高并发测试</title>
+      <link>https://blog.github.io/%E9%9B%86%E4%B8%AD%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Thu, 18 Jun 2020 17:28:55 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E9%9B%86%E4%B8%AD%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/</guid>
+      <description>集中高并发测试 在开发中可能会遇到一些高并发的情况,我们需要测试一下我们的服务器或者代码的bug.
+  使用maxpp 首先进入maxpp的bin目录下
+D:\MAXPP\apache\bin&amp;gt;  -c为每秒发送的次数,-n为一共多少次请求. 后边跟测试的地址
+如下边的命令,就是一共500次请求,一秒请求100次.5秒请求完毕
+ab -c100 -n500 http://127.0.0.1:8000/    自写多线程脚本测试 import threading import requests def get_http(): # 目标地址 res = requests.get(&#39;http://127.0.0.1:8000/sckill/?id=1&#39;) return res threads = [] # 每秒访问次数 99 for x in range(99): t1 = threading.Thread(target=get_http) threads.append(t1) for t in threads: t.start()    </description>
+    </item>
+    
+    <item>
+      <title>GIL全局解释器锁</title>
+      <link>https://blog.github.io/gil%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81/</link>
+      <pubDate>Thu, 18 Jun 2020 17:27:43 +0800</pubDate>
+      
+      <guid>https://blog.github.io/gil%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81/</guid>
+      <description>GIL 全局解释器锁 (英语:global interpreter lock 缩写是GIL) 在理解GIL之前,先理解一下并发与并行的概念: 并发:cpu交替执行.当任务数大于cpu核数时,cpu会交替执行这两个任务.但不是同时执行,由于cpu执行的速度过快,给人的感觉像是在&#39;同时执行&amp;rsquo;.
+并行:多个cpu执行多个任务.各自cpu运行着各自的任务肩并肩一起前行.
+并发和并行同属于多任务,目的是提高cpu的使用效率.但是要明白,一个cpu永远不可能同时执行多个任务.可以在随机分配的时间内交替执行.(时间片轮转调度算法)
+Guido van Rossum（吉多·范罗苏姆）创建python时就只考虑到单核cpu，解决多线程之间数据完整性和状态同步的最简单方法自然就是加锁， 于是有了GIL这把超级大锁。因为cpython解析只允许拥有GIL全局解析器锁才能运行程序，这样就保证了保证同一个时刻只允许一个线程可以使用cpu。由于大量的程序开发者接收了这套机制,现在代码量越来越多,已经不容易通过c代码去解决这个问题。
+什么是GIL? 每个线程在执行时都需要先获取GIL,保证同一时刻只有一个线程在使用cpu,也就是说多线程并不是真正意义上的同时执行.
+GIL 是用于同步线程的一种机制,作用就是在任何时刻只能有一个线程在执行.
+即使有多个核心处理器,使用GIL解释器锁保证同一时刻只有一个线程在运行
+如何解决GIL锁的问题.  更换cpython为jpython(不建议,更换之后讲不能在使用C语言的拓展包.) 使用多进程完成多线程的任务（资源占用会多一些） .在使用多线程可以使用c语言去实现  关于GIL面试高发题   问题1 什么时候会释放GIL锁
+答: 1. 遇到像i/o操作这种,会有时间空闲情况,造成CPU空闲,会释放GIL锁
+​	2.会有一个专门的ticks进行计数,一旦ticks数值达到100,这个时候就会释放GIL锁,线程之间开始竞争gil锁.(说明:ticks这个数值可以进行设置来延长或缩减获得GIL锁的线程使用cpu的时间.)
+  问题2 互斥锁和GIL锁的关系
+  GIL锁:保证同一时刻只有一个线程能使用到cpu
+互斥锁: 多线程时,保证修改共享数据时有序的修改,不会产生数据的混乱
+如下场景:
+ 多线程运行,假设线程1获取了GIL可以使用cpu.这时线程1获取了互斥锁lock.线程1可以修改共享变量date数据 线程1在修改date数据前发生了i/o操作或者是ticks计数满100,这个时候GIL需要被让出,GIL可以被竞争了 线程1和线程2开始竞争GIL(如果线程1是因为i/o阻塞让出了GIL,那线程2必定能拿到GIL,如果是因为ticks计数满100,则公平竞争) 假设线程2拿到了GIL,它要去修改共享变量date数据.由于数据还被线程1互斥锁lock加锁中.所以线程2无法更改date,线程2让出GIL,再次开始竞争. 线程1抢到了GIL,它本身就自带着互斥锁lock, 所以成功修改了数据,修改完成后释放了互斥锁lock, 线程2在获取到GIL和lock之后才可以对date进行修改. 以上就是互斥锁与GIL的关系.  </description>
+    </item>
+    
+    <item>
+      <title>递归</title>
+      <link>https://blog.github.io/%E9%80%92%E5%BD%92/</link>
+      <pubDate>Wed, 03 Jun 2020 20:41:07 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E9%80%92%E5%BD%92/</guid>
+      <description>递归定义: ​	方法本身直接或间接的调用方法本身,通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解.
+使用注意: ​	在使用递归的时候关键两点 (进口和出口)
+要注意递归入口的判断和结束的return返回.一定要注意条件的成立不然可能造成这个函数陷入一个无限调用自己的死循环,造成一些不必要的内存占用
+使用场景
+在一个操作需要多次循环并且判断条件基本一致的时候可以使用递归来进行.可以提升代码的复用性和降低代码的臃肿</description>
+    </item>
+    
+    <item>
+      <title>Celery</title>
+      <link>https://blog.github.io/celery/</link>
+      <pubDate>Mon, 01 Jun 2020 16:47:06 +0800</pubDate>
+      
+      <guid>https://blog.github.io/celery/</guid>
+      <description>多任务队列demo   安装对应的库   pip3 install celery==4.4.2 pip3 install eventlet==0.25.2 pip3 install Django==2.0.4   配置settings文件 这里broker配置redis，同时backend也就是任务结果也存到redis中，格式为json，方便读写。
+# 定义上传文件夹的路径 UPLOAD_ROOT = os.path.join(BASE_DIR, &#39;static/upload&#39;) CELERY_BROKER_URL = &#39;redis://localhost:6379/&#39; CELERY_RESULT_BACKEND = &#39;redis://localhost:6379/&#39; CELERY_RESULT_SERIALIZER = &#39;json&#39;    创建与settings同级目录的celery.py mydjango为当前项目名称
+from __future__ import absolute_import, unicode_literals import os from celery import Celery # 设置环境变量 os.environ.setdefault(&#39;DJANGO_SETTINGS_MODULE&#39;, &#39;mydjango.settings&#39;) # 注册Celery的APP app = Celery(&#39;mydjango&#39;) # 绑定配置文件 app.config_from_object(&#39;django.conf:settings&#39;, namespace=&#39;CELERY&#39;) # 自动发现各个app下的tasks.py文件 app.autodiscover_tasks()    修改settings.py 同级目录下的init.</description>
+    </item>
+    
+    <item>
+      <title>Restful风格</title>
+      <link>https://blog.github.io/restful%E9%A3%8E%E6%A0%BC/</link>
+      <pubDate>Sat, 30 May 2020 17:38:57 +0800</pubDate>
+      
+      <guid>https://blog.github.io/restful%E9%A3%8E%E6%A0%BC/</guid>
+      <description>restful架构 restful的通俗理解  restful就是一个大家都说普通话的约定。 两个人之间可能有交流共同的方式约定，公司内部可能有公司级别的交流沟通约定，世界上也是有世界级别的交流沟通约定。在技术范围也有不同群体间的约定。 有一个博士发了个论文说以前的接口方式都不容易被理解，不好，所以提出了一个名字叫restful的方案。 出于这个博士的影响力和这种方式确实好，所以武林中的各路英雄纷纷响应号召。 以浏览器代码范围错误代码约定这是啥么意思 比如200就是GET请求成功 201就是就是发布了一个内容成功了 等等（其实约定给的代码很少） 比较重要的是HTTP方法里不是有 GET POST PUT DELETE吗 相对应可以对应到 一条数据的 查增改删。那我们不如用浏览器方法吧，这样各种编程语言，各种平台上的人类看到这个就知道你要干啥了呀。当然除了这些方法还有其他很多，你又可以自定义。 以前接口方式错综复杂，就是想统一武林接口方式。  资源设计  设计资源的接口,接口uri选用的是名词,一般和数据库的表名相同,并且使用复数  动作设计   http动作
+​	GET:从服务器中取出资源(一项或者多项)
+​	POST:在服务器中新建一个资源
+​	PUT:在服务器更新资源,PUT更新整个对象
+​	PATCH: 在服务器更新资源,PATCH更新个别属性
+​	DELETE:从服务器中删除资源
+​
+​	HEAD: 获取资源的元数据,比如一个资源的某个值.
+​	OPTIONS: 获取客户端针对一个资源能够实施的操作.(返回这个	接口的所有方法.)
+  动作实例
+GET: 查询所有
+POST: 新建
+PUT: 更新某个数据的信息(提供数据的全部信息)
+PATCH: 更新某个数据的信息(提供数据的部分信息)
+DELETE:删除
+  返回结果   常见状态码
+200 [GET]: 服务器成功返回用户请求的数据
+201 [POST/PUT/PATCH]:用户新建或修改数据成功</description>
+    </item>
+    
+    <item>
+      <title>腾讯云手机验证码</title>
+      <link>https://blog.github.io/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
+      <pubDate>Sat, 30 May 2020 17:38:27 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E8%85%BE%E8%AE%AF%E4%BA%91%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%AF%81%E7%A0%81/</guid>
+      <description>腾讯云短信验证码demo   注册腾讯云 地址:https://cloud.tencent.com/
+  短信签名和正文模板 注册成功之后在右上角搜索框搜索==&amp;gt;短信==&amp;gt;免费领取短信==&amp;gt;快速开始
+根据引导创建短信签名和正文模板,等待审核通过.通过之后就可以使用了.腾讯云默认是赠送200条免费的短信用来测试.
+  编写发送短信脚本
+安装第三方库
+pip install qcloudsms_py  示例代码
+from qcloudsms_py import SmsSingleSender from qcloudsms_py.httpclient import HTTPError import ssl # 短信应用SDK AppID appid = 1400666666 # SDK AppID是1400开头 # 短信应用SDK AppKey appkey = &amp;quot;Appkey&amp;quot; # 需要发送短信的手机号码 phone_numbers = [&amp;quot;你要发送的手机号&amp;quot;] # 短信模板ID，需要在短信应用中申请 template_id = 614434 # 签名 sms_sign = &amp;quot;技术博客&amp;quot; ssl._create_default_https_context = ssl._create_unverified_context ssender = SmsSingleSender(appid, appkey) params = [&amp;quot;6666&amp;quot;,&amp;quot;5&amp;quot;] # 当模板没有参数时，`params = []` try: result = ssender.</description>
+    </item>
+    
+    <item>
+      <title>邮箱验证码注册</title>
+      <link>https://blog.github.io/%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B3%A8%E5%86%8C/</link>
+      <pubDate>Thu, 28 May 2020 19:44:43 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81%E7%A0%81%E6%B3%A8%E5%86%8C/</guid>
+      <description>注册邮箱验证demo   打开邮箱&amp;ndash;&amp;gt;设置&amp;ndash;&amp;gt;账户&amp;ndash;&amp;gt;POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务把IMAP/SMTP服务开启(要记住授权码)   2. ### 定义发送邮箱方法
+import smtplib from email.mime.text import MIMEText from email.utils import formataddr # 定义参数 my_mail = &#39;邮箱地址@qq.com&#39; # 授权码 my_pass = &amp;quot;邮箱设置时分配的授权码&amp;quot; # 定义发送邮箱的方法 def SendMail(subject, content, mailaddr): # 声明邮件对象 msg = MIMEText(content, &amp;quot;plain&amp;quot;, &#39;utf-8&#39;) # 设置发送对象 msg[&#39;From&#39;] = formataddr([&#39;在线教育平台&#39;, my_mail]) # 设置收件方对象 msg[&#39;To&#39;] = formataddr([&#39;尊敬的用户&#39;, mailaddr]) # 设置标题 msg[&#39;Subject&#39;] = subject # 设置smtp服务器 server = smtplib.SMTP_SSL(&#39;smtp.qq.com&#39;, 465) # 登录邮箱 server.login(my_mail, my_pass) # 发送邮件 (发件人 发给谁 发送内容) server.</description>
+    </item>
+    
+    <item>
+      <title>Git分支理解</title>
+      <link>https://blog.github.io/git%E5%88%86%E6%94%AF%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Wed, 27 May 2020 15:57:04 +0800</pubDate>
+      
+      <guid>https://blog.github.io/git%E5%88%86%E6%94%AF%E7%90%86%E8%A7%A3/</guid>
+      <description>git 分支命令 分支就是科幻电影里面的平行宇宙，当你正在电脑前努力学习Git的时候，另一个你正在另一个平行宇宙里努力学习SVN。
+如果两个平行宇宙互不干扰，那对现在的你也没啥影响。不过，在某个时间点，两个平行宇宙合并了，结果，你既学会了Git又学会了SVN！
+分支在实际中的作用,假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，由于代码还没写完，不完整的代码库会导致别人不能干活了。如果等代码全部写完再一次提交，又存在丢失每天进度的巨大风险。
+现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。
+查看当前所在分支 git branch  创建新分支 git checkout -b &amp;lt;branch_name&amp;gt;  把本地分支同步到线上 git push --set-upstream origin &amp;lt;branch_name&amp;gt;  切换分支 git checkout &amp;lt;branch_name&amp;gt;  合并分支(处在master) git merge &amp;lt;branch_name&amp;gt;  删除一个已被终止的分支 如果需要删除的分支不是当前正在打开的分支，使用branch -d直接删除
+git branch -d &amp;lt;branch_name&amp;gt;  删除一个正打开的分支 如果我们在试图删除一个分支时自己还没转移到另外的分支上，Git就会给出一个警告，并拒绝该删除操作。
+如果坚持要删除该分支的话，就需要在命令中使用-D选项。
+git branch -D &amp;lt;branch_name&amp;gt;  </description>
+    </item>
+    
+    <item>
+      <title>Vue深色模式</title>
+      <link>https://blog.github.io/vue%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 10 May 2020 18:27:55 +0800</pubDate>
+      
+      <guid>https://blog.github.io/vue%E6%B7%B1%E8%89%B2%E6%A8%A1%E5%BC%8F/</guid>
+      <description>深色模式demo   找到控制区域颜色的css文件    在修改的页面添加按钮控制 这里引用了heyui的控件.
+&amp;lt;div&amp;gt;深色: &amp;lt;!--trueValue选中的值 falseValue未选中的值 small 缩小版--&amp;gt; &amp;lt;h-switch v-model=&amp;quot;black&amp;quot; trueValue=&amp;quot;yes&amp;quot; falseValue=&amp;quot;no&amp;quot; :small=&amp;quot;true&amp;quot; @change=&amp;quot;change_back()&amp;quot;&amp;gt;&amp;lt;/h-switch&amp;gt; &amp;lt;/div&amp;gt;    定义变量及函数 通过localStorage来保存用户的选择,第一次加载通过当前时间来判断是否使用深色模式
+data(){ return{ //主题变量 black: &#39;yes&#39;, } }, mounted(){ //主题保持 this.get_theme(); }, methods:{ get_theme() { //判断是否是第一次页面加载 if (localStorage.getItem(&#39;theme&#39;) == null) { //第一次加载判断时间 let date = new Date(); //判断当前时间 if (date.getHours() &amp;gt;= 6 &amp;amp;&amp;amp; date.getHours() &amp;lt; 18) { localStorage.setItem(&#39;theme&#39;, &#39;no&#39;); this.black = localStorage.getItem(&#39;theme&#39;); this.change_back() } else { localStorage.</description>
+    </item>
+    
+    <item>
+      <title>Jwt</title>
+      <link>https://blog.github.io/jwt/</link>
+      <pubDate>Sun, 10 May 2020 18:27:42 +0800</pubDate>
+      
+      <guid>https://blog.github.io/jwt/</guid>
+      <description>jwt ###JSON Web Token（JWT）是目前最流行的跨域身份验证解决方案
+  组成部分如下    跨域身份验证    代码 import jwt # 生成jwt 三个参数,载荷(要加密的数据),签名哈希(盐值),指定加密算法 encode_jwt = jwt.encode({&#39;uid&#39;: 2}, &#39;12345&#39;, algorithm=&#39;HS256&#39;) # 转码 encode_str = str(encode_jwt, &#39;utf-8&#39;) print(encode_str) # 解密 三个参数,载荷(要解密的数据),签名哈希(盐值),指定加密算法 decode_jwt = jwt.decode( encode_str, &#39;12345&#39;, algorithms=[&#39;HS256&#39;]) print(decode_jwt) &amp;gt;&amp;gt;&amp;gt;	eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjJ9.6dJKZwsIg-5ctVuUCY6rVOLaBF_O4LmEP66_qZksHoo &amp;gt;&amp;gt;&amp;gt;	{&#39;uid&#39;: 2}    </description>
+    </item>
+    
+    <item>
+      <title>又拍云上传</title>
+      <link>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:23:14 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%8F%88%E6%8B%8D%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>又拍云demo   创建又拍云账号创建空间    网页右上角指向用户名选择&amp;ndash;&amp;gt;账户管理&amp;ndash;&amp;gt;用户资料&amp;ndash;&amp;gt;实名认证   后端建立请求对象 # 又拍云 import upyun # 又拍云上上传 class Upload_yun(View): def post(self, request): # 接收参数 img = request.FILES.get(&#39;file&#39;) # 创建连接对象 up = upyun.UpYun(&#39;空间名&#39;, username=&#39;操作员用户名&#39;, password=&#39;操作员密码&#39;) # 声明 请求头 headers = {&#39;x-gmkerl-rotate&#39;: &#39;180&#39;} for chunk in img.chunks(): res = up.put(&#39;/&#39; + img.name, chunk, checksum=True, headers=headers) return HttpResponse(json.dumps({&#39;filename&#39;: img.name}), content_type=&#39;application/json&#39;)    前端使用拖拽上传 &amp;lt;template&amp;gt; &amp;lt;td&amp;gt;又拍云上传 &amp;lt;div class=&amp;quot;upload&amp;quot;&amp;gt; 拖拽上传 &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/template&amp;gt; mounted() { let upload = document.</description>
+    </item>
+    
+    <item>
+      <title>七牛云上传</title>
+      <link>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</link>
+      <pubDate>Wed, 06 May 2020 17:04:31 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E4%B8%83%E7%89%9B%E4%BA%91%E4%B8%8A%E4%BC%A0/</guid>
+      <description>七牛云上传demo   创建七牛云账号，创建空间    在页面右上角指向头像选择密钥管理选择一套AccessKey/SecretKey   请求token # 七牛云token from qiniu import Auth class QiNiu(APIView): def get(self, request): # 声明认证对象 AK与SK对应系统给你分配的AccessKey/SecretKey q = Auth(&#39;AK&#39;, &#39;SK&#39;) # 获取token token = q.upload_token(&#39;liuliua&#39;) return Response({&#39;token&#39;: token})    前端页面 &amp;lt;tr&amp;gt; &amp;lt;!--图片--&amp;gt; &amp;lt;td&amp;gt;七牛云上传:&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;file&amp;quot; @change=&amp;quot;upload_qiniu&amp;quot;&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt;    前端获取响应拿到token mounted() { this.get_token(); }, methods: { //获取七牛云的token get_token() { this.axios.get(&#39;http://127.0.0.1:8000/qiniu/&#39;) .then(res =&amp;gt; { this.token = res.data.token; console.log(this.token) }) }, //上传到七牛云 upload_qiniu(e) { //获取文件 let file = e.</description>
+    </item>
+    
+    <item>
+      <title>Django压缩图片并添加水印</title>
+      <link>https://blog.github.io/django%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87%E5%B9%B6%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/</link>
+      <pubDate>Wed, 29 Apr 2020 17:01:12 +0800</pubDate>
+      
+      <guid>https://blog.github.io/django%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87%E5%B9%B6%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0/</guid>
+      <description>压缩图片并添加水印demo   导入我们需要的库 # 导入图片库 # 绘画库 from PIL import ImageDraw # 字体库 from PIL import ImageFont # 图片库 from PIL import Image import cv2 # 导入上传文件夹配置 from mydjango.settings import UPLOAD_ROOT import os # 导入时间模块 import datetime    配置settings STATIC_URL = &#39;/static/&#39; STATICFILES_DIRS=[ os.path.join(BASE_DIR,&#39;static&#39;) ] #定义上传文件夹的路径 UPLOAD_ROOT = os.path.join(BASE_DIR,&#39;static/upload&#39;)    定义压缩图片和添加水印的函数. # 图片添加水印 def Wate_Upload(imgname): # 压缩图片 img = cv2.imread(&#39;./static/upload/&#39; + imgname) cv2.imwrite(&#39;./static/upload/&#39; + imgname, img, [cv2.</description>
+    </item>
+    
+    <item>
+      <title>微博三方登录</title>
+      <link>https://blog.github.io/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Tue, 28 Apr 2020 17:31:07 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%BE%AE%E5%8D%9A%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/</guid>
+      <description>三方微博登录demo   使用微博账号登录微博开发平台
+网址: https://open.weibo.com/
+随便起个应用名称创建好应用
+  进入应用,选择应用信息选择高级信息
+填写你的授权回调页与取消授权回调页路由.两个写一样的就好
+  授权验证
+在web页面中给微博登录按钮绑定点击事件.引导用户导到下边的地址
+https://api.weibo.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&amp;amp;response_type=code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI     client_id 对应你应用中的App Key     redirect_uri 对应高级设置中的回调页地址    methods: { //三方登录新浪 sina() { //拼接url let url = &#39;https://api.weibo.com/oauth2/authorize?client_id=1655382420&amp;amp;response_type=code&amp;amp;redirect_uri=http://127.0.0.1:8000/md_blog&#39;; //跳转 window.location.href = url; }, }    换取access token
+https://api.weibo.com/oauth2/access_token?client_id=YOUR_CLIENT_ID&amp;amp;client_secret=YOUR_CLIENT_SECRET&amp;amp;grant_type=authorization_code&amp;amp;redirect_uri=YOUR_REGISTERED_REDIRECT_URI&amp;amp;code=CODE     client_id 对应你应用中的App Key     client_secret 对应你应用中的App Secret   grant_type authorization_code(固定参数)   code 回调页返回回来的code值    # 三方登录微博 def md_blog(request): # 接收微博返回来的code code = request.</description>
+    </item>
+    
+    <item>
+      <title>限制用户登录次数</title>
+      <link>https://blog.github.io/%E9%99%90%E5%88%B6%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0/</link>
+      <pubDate>Sun, 26 Apr 2020 16:20:37 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E9%99%90%E5%88%B6%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0/</guid>
+      <description>登录次数过多限制登录demo 当用户密码输入次数过多时,限制用户的登录,一方面保护账号的安全,另一方面防止恶意登录. 下面提供两个版本,mysql与redis
+mysql直接在表中增加字段flag,用户输入密码错误flag+1,判断这个数据如果大于5.就拦截请求,直接返回.
+但是mysql在计算时间不如redis,会更繁琐一些.当然看业务需求,密码错误5次之后,必须更改密码,更改密码之后把flag字段清零.
+或者用手机号登录,登录成功就把flag字段清零.
+mysql: # 登录接口 class Login(APIView): def get(self, request): # mysql # 接收参数 username = request.GET.get(&#39;username&#39;) password = request.GET.get(&#39;password&#39;) # 查询数据 user = User.objects.filter(username=username).first() if user and user.flag &amp;lt; 5 and user.password == make_password(password): return Response({ &#39;code&#39;: 200, &#39;msg&#39;: &#39;登录成功&#39;, &#39;user&#39;: username, &#39;uid&#39;: user.id }) elif user and user.flag &amp;gt;= 5: return Response({ &#39;code&#39;: 400, &#39;msg&#39;: &#39;错误超过5次,请联系客服&#39; }) elif user and user.flag &amp;lt; 5 and user.</description>
+    </item>
+    
+    <item>
+      <title>文字识别验证码自动登录</title>
+      <link>https://blog.github.io/%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB%E9%AA%8C%E8%AF%81%E7%A0%81%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Sun, 26 Apr 2020 16:19:48 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB%E9%AA%8C%E8%AF%81%E7%A0%81%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95/</guid>
+      <description>识别图片验证码自动登录demo   使用selenium需要下载chromedriver 网址: http://npm.taobao.org/mirrors/chromedriver/ 下载跟自己浏览器版本号最接近的版本.
+  https://cloud.baidu.com/ 百度开发平台. https://cloud.baidu.com/doc/OCR/s/zk3h7xz52 文字识别开发文档
+  导包
+import random from selenium import webdriver import time import requests import json import base64 import urllib    建立浏览器对象和抓取验证码图片
+# 建立浏览器对象 browser = webdriver.Chrome(&#39;D:\python\python6\chromedriver.exe&#39;) # 打开网址 browser.get(&#39;http://localhost:8080/register&#39;) # 等待5秒 time.sleep(3) # 选择元素 myimg = browser.find_element_by_xpath(&#39;//*[@id=&amp;quot;app&amp;quot;]/div/section/div[2]/table/tr[3]/td[2]/img&#39;) # 截取元素图 myimg.screenshot(&#39;register.png&#39;) # 随机生成用户名与密码 num = &#39;0123456789qwertyuiopasdfghjklzxcvbnm&#39; nums = &#39;0123456789&#39;    调用百度接口识别我们截图的验证码图片
+def Disc_img(): # 请求调用百度接口 res = requests.</description>
+    </item>
+    
+    <item>
+      <title>图片验证码</title>
+      <link>https://blog.github.io/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
+      <pubDate>Thu, 23 Apr 2020 17:42:21 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/</guid>
+      <description>图片验证码demo   导入需要的第三方库
+# 导入类视图 from django.views import View # 导入redis数据库 import redis # 导入图片库 # 绘画库 from PIL import ImageDraw # 字体库 from PIL import ImageFont # 图片库 from PIL import Image # 随机库 import random # 文件流 import io    后端代码
+建立连接redis对象
+# 定义ip地址和端口 host = &amp;quot;localhost&amp;quot; port = 6379 # 定义连接对象 r = redis.Redis(host=host, port=port)    view逻辑
+# 定义验证码类 class MyCode(View): # 定义随机颜色 def get_random_color(self): R = random.</description>
+    </item>
+    
+    <item>
+      <title>正则验证手机号</title>
+      <link>https://blog.github.io/%E6%AD%A3%E5%88%99%E9%AA%8C%E8%AF%81%E6%89%8B%E6%9C%BA%E5%8F%B7/</link>
+      <pubDate>Thu, 23 Apr 2020 17:39:03 +0800</pubDate>
+      
+      <guid>https://blog.github.io/%E6%AD%A3%E5%88%99%E9%AA%8C%E8%AF%81%E6%89%8B%E6%9C%BA%E5%8F%B7/</guid>
+      <description>正则验证手机号demo   template中定义标签框架
+手机号: &amp;lt;input type=&amp;quot;text&amp;quot; v-model=&amp;quot;Phone&amp;quot; oninput=&amp;quot;if(value.length&amp;gt;11)value=value.slice(0,11)&amp;quot; placeholder=&amp;quot;请输入您的手机号&amp;quot;/&amp;gt; &amp;lt;Button color=&amp;quot;blue&amp;quot; @click=&amp;quot;reg()&amp;quot;&amp;gt;注册&amp;lt;/Button&amp;gt;    data中定义我们需要的变量
+data() { return { Phone: &#39;&#39; } },    methobs中定义方法
+reg() { //判断用户是否输入 if (this.username === &#39;&#39; || this.password === &#39;&#39; || this.Phone === &#39;&#39;) { this.$Message(&#39;请检查输入&#39;); return false } else { //正则判断手机号 if (!(/^1[34578]\d{9}$/.test(this.Phone))) { this.$Message(&#39;手机号格式不正确&#39;); return false } else { this.axios.get(&#39; http://127.0.0.1:8000/register/&#39;, { params: { username: this.username, password: this.password, phone:this.</description>
+    </item>
+    
+    <item>
+      <title>Vue购物车demo</title>
+      <link>https://blog.github.io/vue%E8%B4%AD%E7%89%A9%E8%BD%A6demo/</link>
+      <pubDate>Wed, 22 Apr 2020 12:36:59 +0800</pubDate>
+      
+      <guid>https://blog.github.io/vue%E8%B4%AD%E7%89%A9%E8%BD%A6demo/</guid>
+      <description>购物车简易demo   在data()中添加商品 return { msg: &amp;quot;这是一个变量&amp;quot;, //购物车变量 clist: [ {name: &#39;iphone 8&#39;, price: 5099,num:1}, {name: &#39;iphone x&#39;, price: 8699,num:1}, {name: &#39;iphone xs&#39;, price: 6499,num:1} ], //总价格 price:0, }    template中完成表格 &amp;lt;tr v-for=&amp;quot;(i,index) in this.clist&amp;quot;&amp;gt; &amp;lt;td data-th=&amp;quot;Product&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;row&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;col-md-3 text-left&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;../assets/images/placeholder-product.jpg&amp;quot; class=&amp;quot;img-fluid&amp;quot;&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;col-md-9 text-left mt-sm-2&amp;quot;&amp;gt; &amp;lt;h4&amp;gt;{{i.name}}&amp;lt;/h4&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td data-th=&amp;quot;Price&amp;quot;&amp;gt;{{i.price}}&amp;lt;/td&amp;gt; &amp;lt;td data-th=&amp;quot;Quantity&amp;quot;&amp;gt; &amp;lt;input type=&amp;quot;number&amp;quot; class=&amp;quot;form-control text-center&amp;quot; v-model=&amp;quot;i.num&amp;quot;&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td class=&amp;quot;actions&amp;quot; data-th=&amp;quot;&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;text-right&amp;quot;&amp;gt; &amp;lt;Button @click=&amp;quot;changenum(index,&#39;+&#39;)&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fas fa-sync&amp;quot;&amp;gt;+&amp;lt;/i&amp;gt;&amp;lt;/Button&amp;gt; &amp;lt;Button @click=&amp;quot;changenum(index,&#39;-&#39;)&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;fas fa-trash&amp;quot;&amp;gt;-&amp;lt;/i&amp;gt;&amp;lt;/Button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;&amp;lt;Button @click=&amp;quot;rem(index)&amp;quot;&amp;gt;移除&amp;lt;/Button&amp;gt;&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt;    在mounted钩子方法中写入页面加载立即计算总价 mounted: function () { //加载页面第一次计算总价 for(let i =0,l=this.</description>
+    </item>
+    
+    <item>
+      <title>json</title>
+      <link>https://blog.github.io/json/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/json/</guid>
+      <description>json与序列化 序列化是指将内存中的对象转换为可存储或传输的字节序列 # 把dict(字典)转换为字符串(序列化) json.dumps() # 把字符串转换为dict(字典)(反序列化) json.loads() ---------------------------------------------------- #load和loads的区别(反序列化) 1.load:针对文件句柄,将json格式的字符串转为dict,从文件中读取 json = json.load(open(&#39;demo.json&#39;,&#39;r&#39;)) 2.loads:针对内存对象,将字符串转换为dict json = json.loads(&#39;{&amp;quot;a&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;b&amp;quot;:&amp;quot;2&amp;quot;}&#39;) #dump和dumps(序列化) 1.dump:将dict转换为json字符串格式并写入到文件 dict={&amp;quot;a&amp;quot;:&amp;quot;1&amp;quot;} json.dump(dict,open(&#39;demo.json&#39;,&#39;w&#39;)) 2.dumps:将dict转换为字符串类型 dict={&amp;quot;a&amp;quot;:&amp;quot;1&amp;quot;} str=json.dumps(dict)  总结 根据序列化和反序列的特性
+loads： 是将string转换为dict
+dumps： 是将dict转换为string
+load： 是将里json格式字符串转化为dict，读取文件
+dump： 是将dict类型转换为json格式字符串，存入文件</description>
+    </item>
+    
+    <item>
+      <title>Vue传参query与params</title>
+      <link>https://blog.github.io/vue%E4%BC%A0%E5%8F%82query%E4%B8%8Eparams/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/vue%E4%BC%A0%E5%8F%82query%E4%B8%8Eparams/</guid>
+      <description>1.query方式传递参数
+this.$router.push({ /query方式传参使用path或name都可以 path:&#39;/index&#39;, query:{ //要传递的参数 key:value } })  query方式传递参数接收参数
+this.xx=this.$route.query.xx   2.params方式传递参数
+this.$router.push({ /使用params方式传参这里必须写name 路由中定义的name name:&#39;xxx&#39;, params:{ //要传递的参数 key:value } })  params方式传递接收参数
+this.xx=this.$route.params.xx   注意事项
+//在传递参数是使用this.$router //接收参数时使用this.$toute /只有一个r的差别,经常会犯的小马虎  query与params方式传参在客户端的区别
+query方式传参在地址栏中会显示 字段=数据 id=1&amp;amp;age=18&amp;amp;name=zhangsan  params方式传参在地址栏中会显示 数据/数据/数据 1/18/zhangsan  </description>
+    </item>
+    
+    <item>
+      <title>Vue分页展示</title>
+      <link>https://blog.github.io/vue%E5%88%86%E9%A1%B5%E5%B1%95%E7%A4%BA/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/vue%E5%88%86%E9%A1%B5%E5%B1%95%E7%A4%BA/</guid>
+      <description>这里提供两种分页方法 一种是手写分页,不常用,但是明白一下分页的逻辑实现 第二种是用heyui提供的组件.很多功能都给封装好了,用起来也非常的美观.   手写分页 后端接口
+class GoodList(APIView): def get(self, request): # 当前页 page = int(request.GET.get(&#39;page&#39;, 1)) # 一页有多少条商品 size = int(request.GET.get(&#39;size&#39;, 1)) # 定义从哪里开始切片 data_start = (page - 1) * size # 定义切到哪 data_end = page * size #查询数据 goodslist=Goods.objects.all()[data_start:data_end] #查询总数量 count=Goods.objects.count() # 序列化操作 goods_ser=GoodsSer(goodslist,many=True) # 返回响应 return Response({ &#39;total&#39;:count, &#39;data&#39;:goods_ser.data })  前段页面
+&amp;lt;template&amp;gt; ...... &amp;lt;!--自主分页--&amp;gt; &amp;lt;div&amp;gt; &amp;lt;!-- v-show 判断当前页数是否有需要显示上或下一页 --&amp;gt; &amp;lt;Button v-show=&amp;quot;lastpage&amp;quot; @click=&amp;quot;getdata(lastpage)&amp;quot;&amp;gt;上一页&amp;lt;/Button&amp;gt; &amp;lt;Button v-for=&amp;quot;index in all&amp;quot; @click=&amp;quot;getdata(index)&amp;quot;&amp;gt;{{index}}&amp;lt;/Button&amp;gt; &amp;lt;Button v-show=&amp;quot;nextpage&amp;quot; @click=&amp;quot;getdata(nextpage)&amp;quot;&amp;gt;下一页&amp;lt;/Button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; export default { data() { return { //自主分页 total: 0,//商品总数 curpage: 1,//当前页 all: 0,//总页数 lastpage: 0,//上一页 nextpage: 0,//下一页 size: 2,//每页显示多少 //商品列表 goodlist: &#39;&#39;, mounted() { //调用自主分请求 this.</description>
+    </item>
+    
+    <item>
+      <title>Vue页面语言切换</title>
+      <link>https://blog.github.io/vue%E9%A1%B5%E9%9D%A2%E8%AF%AD%E8%A8%80%E5%88%87%E6%8D%A2/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/vue%E9%A1%B5%E9%9D%A2%E8%AF%AD%E8%A8%80%E5%88%87%E6%8D%A2/</guid>
+      <description>i18n 模块 语言国际化 首先在Vue项目中安装i18n模块
+npm install vue-i18n --save  在src目录下创建文件夹lang(名字根据自己喜好)
+在lang文件夹中创建两个js文件(这里做的是中英文切换,如果是多个国家语言文件同步增多)
+//数据是key:value形式,根据对应的中英文转换填写 export const m = { name: &#39;美多商城&#39;, home: &#39;首页&#39;, shop: &#39;商店&#39;, page: &#39;更多&#39;, contact: &#39;联系我们&#39;, welcome:&#39;欢迎您&#39; };  打开Vue项目中main.js文件
+//引入国际化组件 import VueI18n from &#39;vue-i18n&#39;; Vue.use(VueI18n); //调用语言包 const i18n = new VueI18n({ //默认语言包 locale: &#39;cn&#39;, //导入语言包 messages: { //存放我们编写的语言文件的路径 &#39;cn&#39;: require(&#39;./lang/cn&#39;), &#39;en&#39;: require(&#39;./lang/en&#39;) } }); ...... new Vue({ el: &#39;#app&#39;, router, //装载语言包 i18n, ...... });  在文件中修改文字
+原来: &amp;lt;i&amp;gt;百度一下&amp;lt;/i&amp;gt; 改变之后: m代表我们声明的常量名.</description>
+    </item>
+    
+    <item>
+      <title>中间件与装饰器</title>
+      <link>https://blog.github.io/%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A8/</link>
+      <pubDate>Wed, 26 Dec 2018 00:29:41 -0600</pubDate>
+      
+      <guid>https://blog.github.io/%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A8/</guid>
+      <description>Django自定义中间件 首先在settings.py文件中的MIDDLEWARE导入自定义的中间件类名 MIDDLEWARE = [ &#39;django.middleware.security.SecurityMiddleware&#39;, &#39;django.contrib.sessions.middleware.SessionMiddleware&#39;, &#39;corsheaders.middleware.CorsMiddleware&#39;, ...... # 加载自定义中间件 文件夹名.文件名.类名 根据自己的路径来导入类名 &#39;myapp.md_user.MyMiddleWare&#39;  view视图文件中导入MIddlewareMimin 定义类 之后就可以根据自己的需求在对应的函数中写入逻辑 # 自定义中间件 from django.utils.deprecation import MiddlewareMixin class MyMiddleWare(MiddlewareMixin): # 请求之前 def process_request(self, request): pass # 模板渲染之前 def process_view(self, request, view_func, view_args, view_kwargs): pass # 请求之后 def process_response(self, request, response): return response $中间件的5种方法 1、process_request : 请求进来时,权限认证 。 2、process_view : 路由匹配之后,能够得到视图函数 3、process_exception : 异常时执行 4、process_template_responseprocess : 模板渲染时执行 5、process_response : 请求有响应时执行     装饰器 装饰器原理是函数嵌套,闭包运行.</description>
+    </item>
+    
+    <item>
+      <title>Django利用redis中的有序集合完成商品排行榜或点击量</title>
+      <link>https://blog.github.io/django%E5%88%A9%E7%94%A8redis%E4%B8%AD%E7%9A%84%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88%E5%AE%8C%E6%88%90%E5%95%86%E5%93%81%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%88%96%E7%82%B9%E5%87%BB%E9%87%8F/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.github.io/django%E5%88%A9%E7%94%A8redis%E4%B8%AD%E7%9A%84%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88%E5%AE%8C%E6%88%90%E5%95%86%E5%93%81%E6%8E%92%E8%A1%8C%E6%A6%9C%E6%88%96%E7%82%B9%E5%87%BB%E9%87%8F/</guid>
+      <description>Redis 有序集合(sorted set) redis有序集合和集合一样,元素依旧是唯一的.但不用的是有序集合可以根绝key来做排序.
+# 有序集合的使用 # 通过zadd来添加 r.zadd(&#39;myrank&#39;, {&#39;car&#39;: 30}) r.zadd(&#39;myrank&#39;, {&#39;phone&#39;: 100}) r.zadd(&#39;myrank&#39;, {&#39;gid&#39;: 20}) print(r.zrange(&#39;myrank&#39;, 0, -1, desc=True, withscores=True)) # zrange 遍历所有数据 # 起始与结束的位置 0和-1代表全部 # desc = true 降序排列 默认是正序 # withscores=True 打印key和value,否则只打印key &amp;gt;&amp;gt;&amp;gt;[(b&#39;car&#39;, 100.0), (b&#39;phone&#39;, 30.0), (b&#39;gid&#39;, 20.0)] # 修改操作 修改的数据与原数据累加 nwescore = r.zincrby(&#39;myrank&#39;,300,&#39;phone&#39;) # 累加前 &amp;gt;&amp;gt;&amp;gt;[(b&#39;gid&#39;, 20.0), (b&#39;car&#39;, 30.0), (b&#39;phone&#39;, 100.0)] #累加后 &amp;gt;&amp;gt;&amp;gt;[(b&#39;gid&#39;, 20.0), (b&#39;car&#39;, 30.0), (b&#39;phone&#39;, 400.0)]  redis累加的特性,天然的适用于商品的点击数量.以商品id为key,把value累加.这样点击数记录,而且有序排序,也可以轻松的完场排行榜的功能.
+# 工具方法.获取排行榜前N名的数据 def get_top_n(num): # 获取redis中的排行榜数据 goods_click = r.</description>
+    </item>
+    
+  </channel>
+</rss>

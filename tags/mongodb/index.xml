@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mongodb on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/mongodb/</link>
+    <description>Recent content in mongodb on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Jul 2020 21:10:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mongo聚合查询</title>
+      <link>https://blog.github.io/mongo%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2/</link>
+      <pubDate>Wed, 15 Jul 2020 21:10:54 +0800</pubDate>
+      
+      <guid>https://blog.github.io/mongo%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2/</guid>
+      <description>在使用mongo数据库时，简单的查询基本上可以满足大多数的业务场景，但是试想一下，如果要统计某一荐在指定的数据中出现了多少次该怎么查询呢？笨的方法是使用find 将数据查询出来，再使用count() 方法进行数据统计，这个场景还好，但是如果要求其中某个字段的和呢？是不是就非得遍历出相应的数据然后再进行求和运算呢？
+在mysql中我们经常会用到count、group by 等查询，在mongodb中我们也可以使用聚合查询。
+ 假设有这样的一组数据
+价格
+里面记录了每种水果的价格，现在我要统计一下，各种水果在这张表中出现的次数，如果不用聚合查询的话，思路应该是这样，先把表中所有的数据都取出来，然后初始化一个字典，然后再遍历每一行的数据，获取它的fName ，然后再更新字典中的计数，这种方法的时间复杂度是O(N)的，如果数据量很大的话不是很好，下面来看一下使用聚合是怎么查询的。
+聚合查询使用的是aggregate函数，它的参数是 pipeline 管道，管道的概念是用于将当前命令的输出结果作为下一个命令的参数，管道是有顺序的，比如通过第一个管道操作以后没有符合的数据那么之后的管道操作也就不会有输入，所以一定得要注意管道操作的顺序。由于对于上述问题，我们要的是所的数据统计，所以这里就不需要$match了
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+from pymongo import MongoClient
+
+client = MongoClient(host=[&#39;%s:%s&#39;%(mongoDBhost,mongoDBport)])
+G_mongo = client[mongoDBname][&#39;FruitPrice&#39;]
+
+pipeline = [
+{&#39;$group&#39;: {&#39;_id&#39;: &#34;$fName&#34;, &#39;count&#39;: {&#39;$sum&#39;: 1}}},
+]
+for i in G_mongo[&#39;test&#39;].aggregate(pipeline):
+print i
+
+数据大家可以自已构造，这里主要是看aggregate的用法。
+得到的结果是
+1
+2
+3
+{u&#39;count&#39;: 8, u&#39;_id&#39;: u&#39;banana&#39;}
+{u&#39;count&#39;: 9, u&#39;_id&#39;: u&#39;pear&#39;}
+{u&#39;count&#39;: 14, u&#39;_id&#39;: u&#39;apple&#39;}</description>
+    </item>
+    
+    <item>
+      <title>Mongodb导入文件夹(包含json和bson文件)</title>
+      <link>https://blog.github.io/mongodb%E5%AF%BC%E5%85%A5%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8C%85%E5%90%ABjson%E5%92%8Cbson%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Tue, 14 Jul 2020 22:10:26 +0800</pubDate>
+      
+      <guid>https://blog.github.io/mongodb%E5%AF%BC%E5%85%A5%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8C%85%E5%90%ABjson%E5%92%8Cbson%E6%96%87%E4%BB%B6/</guid>
+      <description>mongo导入文件   从mongo安装目录下的bin目录进入cmd 输入mongo启动   使用mongo命令将数据库删除 use 数据库名 db.dropDatabase()    重新在bin目录启动cmd 导入指定文件夹数据 在bin目录下直接输入命令即可,启动mongo之后不能粘贴
+mongorestore -d 数据库名 文件夹目录    </description>
+    </item>
+    
+  </channel>
+</rss>

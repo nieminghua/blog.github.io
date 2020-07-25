@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>异步 on NieMinghua-blog</title>
+    <link>https://blog.github.io/tags/%E5%BC%82%E6%AD%A5/</link>
+    <description>Recent content in 异步 on NieMinghua-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jun 2020 16:47:06 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.github.io/tags/%E5%BC%82%E6%AD%A5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Celery</title>
+      <link>https://blog.github.io/celery/</link>
+      <pubDate>Mon, 01 Jun 2020 16:47:06 +0800</pubDate>
+      
+      <guid>https://blog.github.io/celery/</guid>
+      <description>多任务队列demo   安装对应的库   pip3 install celery==4.4.2 pip3 install eventlet==0.25.2 pip3 install Django==2.0.4   配置settings文件 这里broker配置redis，同时backend也就是任务结果也存到redis中，格式为json，方便读写。
+# 定义上传文件夹的路径 UPLOAD_ROOT = os.path.join(BASE_DIR, &#39;static/upload&#39;) CELERY_BROKER_URL = &#39;redis://localhost:6379/&#39; CELERY_RESULT_BACKEND = &#39;redis://localhost:6379/&#39; CELERY_RESULT_SERIALIZER = &#39;json&#39;    创建与settings同级目录的celery.py mydjango为当前项目名称
+from __future__ import absolute_import, unicode_literals import os from celery import Celery # 设置环境变量 os.environ.setdefault(&#39;DJANGO_SETTINGS_MODULE&#39;, &#39;mydjango.settings&#39;) # 注册Celery的APP app = Celery(&#39;mydjango&#39;) # 绑定配置文件 app.config_from_object(&#39;django.conf:settings&#39;, namespace=&#39;CELERY&#39;) # 自动发现各个app下的tasks.py文件 app.autodiscover_tasks()    修改settings.py 同级目录下的init.</description>
+    </item>
+    
+  </channel>
+</rss>
